@@ -4,7 +4,7 @@ import sys
 class System(object):
     def __init__(self):
         self.platform = sys.platform
-        self._config = None
+        self._config = Config()
         self._wurl = None
 
     @property
