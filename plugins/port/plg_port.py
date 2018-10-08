@@ -3,11 +3,11 @@
 # 扫描端口插件
 #######################
 from common.plugin import Plugin
-import common.cmd.cmdUtil as shell
 from common.log.logUtil import LogUtil as logging
 from libnmap.process import NmapProcess
 from libnmap.parser import NmapParser, NmapParserException
 import time
+
 logger = logging.instance().getLogger()
 
 
@@ -23,8 +23,6 @@ class CifyPlugin(Plugin):
             self.do_scan('39.108.133.111')
         except PermissionError as e:
             logger.error(e)
-
-
 
     def do_scan(self, targets, options="-sV -O --top-ports 300", is_back=False):
         nm = NmapProcess(targets, options)

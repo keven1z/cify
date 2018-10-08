@@ -33,11 +33,11 @@ class Web():
         except requests.exceptions.ConnectionError:
             logger.info('ConnectionError when access %s', url)
         except requests.exceptions.ChunkedEncodingError:
-            logger.error('ChunkedEncodingError when access %s, %s', url, traceback.format_exc())
+            logger.error('ChunkedEncodingError when access %s', url)
         except requests.exceptions.Timeout:
-            logger.error('Timeout when access %s, %s', url, traceback.format_exc())
+            logger.error('Timeout when access %s', url)
         except Exception as e:
-            logger.error('Timeout when access %s, %s', url, traceback.format_exc())
+            logger.error('Timeout when access %s', url)
         finally:
             if resp:
                 used_time = time.time() - start_time

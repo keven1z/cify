@@ -9,20 +9,15 @@ import time
 
 
 class Worker(threading.Thread):
-	def __init__(self):
-		threading.Thread.__init__(self) 
-		self.param = None
+    def __init__(self, wurl):
+        threading.Thread.__init__(self)
+        self.wurl = wurl
 
-	def _run(self):
-		raise Exception('unimplemented method')
+    def _run(self):
+        raise Exception('unimplemented method')
 
-	def run(self):
-		self._run()
+    def run(self):
+        self._run()
 
-	def set_job(self, param):
-		self.param = param
-
-	def do_job(self, job):
-		raise Exception('unimplemented method')
-
-
+    def _do_job(self):
+        raise Exception('unimplemented method')
