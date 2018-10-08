@@ -4,7 +4,7 @@
 #插件类                   #
 ###########################
 from common.log.logUtil import LogUtil
-from common.net.webUtil import web
+
 class Plugin( object ):
 
     def __init__(self):
