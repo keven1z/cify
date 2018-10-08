@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+
+<ruler>
+    <module>
+        <description>这是一个获取89ip代理池的规则，接口URL:http://www.89ip.cn/tqdl.html</description>
+        <url>http://www.89ip.cn/tqdl.html?api=1&amp;num=40&amp;port=&amp;address=&amp;isp=</url> <!--&需要转义 -->
+        <id>10000</id>
+    </module>
+</ruler>
