@@ -17,9 +17,11 @@ class CifySpider(Spider):
         self.client = Web()
         self.port_status = {}
         self.proxy = IPProxy()
+        self._target = None
 
-    def _run(self, host):
+    def _run(self, system):
         port_array = PortConstant.PORTARRAY
+        self._target = system.wurl.hostname
         thread_num = len(port_array) / 2 + 1
         with ThreadPoolExecutor(thread_num) as executor:
             for port in port_array:
@@ -28,7 +30,7 @@ class CifySpider(Spider):
     def getPortStatus(self, port):
         url = self._url
         data = []
-        hostlist = ['host', host]
+        hostlist = ['host', self._target]
         hostlist = tuple(hostlist)
         portlist = ['port', port]
         portlist = tuple(portlist)

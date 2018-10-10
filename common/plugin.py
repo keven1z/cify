@@ -1,21 +1,24 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 ###########################
-#插件类                   #
+# 插件类                   #
 ###########################
 from common.log.logUtil import LogUtil
 
-class Plugin( object ):
+
+class Plugin(object):
 
     def __init__(self):
-        self._id=-1
+        self._id = -1
+        self.system = None
 
     @property
     def id(self):
         return self._id
 
-    def _run(self, wurl):
-        raise Exception('unimplemented method')
+    def run(self, system):
+        self.system = system
+        self._run()
 
-    def cmd_run(self, wurl):
-        self._run(wurl)
+    def _run(self):
+        raise Exception('unimplemented method')

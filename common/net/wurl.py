@@ -1,174 +1,188 @@
-#__*__coding:utf-8__*__
+# __*__coding:utf-8__*__
 from urllib.parse import urlparse
 from common.net.constant import HttpConstant
 from common.log.logUtil import LogUtil as logging
-logging=logging.instance().getLogger()
+
+logging = logging.instance().getLogger()
+
+
 class Wurl(object):
-	"""docstring for Wurl"""
-	def __init__(self, url ,**kwargs):
-		super(Wurl, self).__init__()
-		self._request = WrappedRequest(**kwargs)
-		self._url = url
-  
-	@property
-	def url(self):
-		return self._url
+    """docstring for Wurl"""
 
-	@url.setter
-	def url(self, url):
-		self._url = url
+    def __init__(self, url, **kwargs):
+        self._request = WrappedRequest(**kwargs)
+        self._url = url
 
-	@property
-	def port(self):
-		components = urlparse(self._url)
-		port = components.port
-		if port is None:
-			if components.scheme == 'http':
-				port = 80
-		elif components.scheme == 'https':
-			port = 443
-		return port
+    @property
+    def url(self):
+        return self._url
 
-	@property
-	def method(self):
-		return self._request.method
+    @url.setter
+    def url(self, url):
+        self._url = url
 
-	@method.setter
-	def method(self, method):
-		self._request.method = method
+    @property
+    def port(self):
+        components = urlparse(self._url)
+        port = components.port
+        if port is None:
+            if components.scheme == 'http':
+                port = 80
+            elif components.scheme == 'https':
+                port = 443
+        return port
 
-	@property
-	def req_headers(self):
-		return self._request.headers
+    @property
+    def hostname(self):
+        components = urlparse(self._url)
+        hostname = components.hostname
+        return hostname
 
-	@req_headers.setter
-	def req_headers(self, headers):
-		self._request.headers = headers
+    @property
+    def method(self):
+        return self._request.method
 
-	@property
-	def post_data(self):
-		return self._request.post_data
+    @method.setter
+    def method(self, method):
+        self._request.method = method
 
-	@post_data.setter
-	def post_data(self, data):
-		self._request.post_data = data
+    @property
+    def req_headers(self):
+        return self._request.headers
 
-	@property
-	def proxy(self):
-		return self._request.proxy
+    @req_headers.setter
+    def req_headers(self, headers):
+        self._request.headers = headers
 
-	@proxy.setter
-	def proxy(self, proxy):
-		self._request.proxy = proxy
+    @property
+    def post_data(self):
+        return self._request.post_data
 
-	@property
-	def auth(self):
-		return self._request.auth
+    @post_data.setter
+    def post_data(self, data):
+        self._request.post_data = data
 
-	@auth.setter
-	def auth(self, auth):
-		self._request.auth = auth
+    @property
+    def proxy(self):
+        return self._request.proxy
 
-	@property
-	def cert(self):
-		return self._request.cert
+    @proxy.setter
+    def proxy(self, proxy):
+        self._request.proxy = proxy
 
-	@cert.setter
-	def cert(self, cert):
-		self._request.cert = cert
+    @property
+    def auth(self):
+        return self._request.auth
 
-	@property
-	def cookies(self):
-		return self._request.cookies
+    @auth.setter
+    def auth(self, auth):
+        self._request.auth = auth
+
+    @property
+    def cert(self):
+        return self._request.cert
+
+    @cert.setter
+    def cert(self, cert):
+        self._request.cert = cert
+
+    @property
+    def cookies(self):
+        return self._request.cookies
+
 
 class WrappedRequest(object):
-	def __init__(self, method=HttpConstant.GET, headers={}, proxy=None, auth=None, cookies=None, \
-				data='', timeout=None, allow_redirects=False, desc_text="", **kwargs):
-		kwargs = dict(kwargs)
-		kwargs['method'] = method
-		kwargs['allow_redirects'] = allow_redirects
-		kwargs['headers'] = dict(headers)
-		if proxy:
-			kwargs['proxy'] = proxy
-		if auth:
-			kwargs['auth'] = auth
+    def __init__(self, method=HttpConstant.GET, headers={}, proxy=None, auth=None, cookies=None, \
+                 data='', timeout=None, allow_redirects=False, desc_text="", **kwargs):
+        kwargs = dict(kwargs)
+        kwargs['method'] = method
+        kwargs['allow_redirects'] = allow_redirects
+        kwargs['headers'] = dict(headers)
+        if proxy:
+            kwargs['proxy'] = proxy
+        if auth:
+            kwargs['auth'] = auth
 
-		if data:
-			kwargs['data'] = data
-		if timeout:
-			kwargs['timeout'] = timeout
+        if data:
+            kwargs['data'] = data
+        if timeout:
+            kwargs['timeout'] = timeout
 
-		kwargs['text'] = desc_text
+        kwargs['text'] = desc_text
 
-		self._kwargs = kwargs
+        self._kwargs = kwargs
 
-	@property
-	def method(self):
-		return self._kwargs.get('method')
+    @property
+    def method(self):
+        return self._kwargs.get('method')
 
-	@method.setter
-	def method(self, method):
-		self._kwargs['method'] = method
+    @method.setter
+    def method(self, method):
+        self._kwargs['method'] = method
 
-	@property
-	def headers(self):
-		return self._kwargs.get('headers')
+    @property
+    def headers(self):
+        return self._kwargs.get('headers')
 
-	@headers.setter
-	def headers(self, headers):
-		self._kwargs['headers'] = headers
+    @headers.setter
+    def headers(self, headers):
+        self._kwargs['headers'] = headers
 
-	@property
-	def proxy(self):
-		return self._kwargs.get('proxy')
+    @property
+    def proxy(self):
+        return self._kwargs.get('proxy')
 
-	@proxy.setter
-	def proxy(self, proxy):
-		self._kwargs['proxy'] = proxy
+    @proxy.setter
+    def proxy(self, proxy):
+        self._kwargs['proxy'] = proxy
 
-	@property
-	def auth(self):
-		return self._kwargs.get('auth')
+    @property
+    def auth(self):
+        return self._kwargs.get('auth')
 
-	@auth.setter
-	def auth(self, auth):
-		self._kwargs['auth'] = auth
+    @auth.setter
+    def auth(self, auth):
+        self._kwargs['auth'] = auth
 
-	@property
-	def cert(self):
-		return self._kwargs.get('cert')
-    
-	@cert.setter
-	def cert(self, cert):
-		self._kwargs['cert'] = cert
+    @property
+    def cert(self):
+        return self._kwargs.get('cert')
 
-	@property
-	def cookies(self):
-		return self._kwargs.get('cookies')
+    @cert.setter
+    def cert(self, cert):
+        self._kwargs['cert'] = cert
 
-	@cookies.setter
-	def cookies(self, cookies):
-		self._kwargs['cookies'] = cookies
+    @property
+    def cookies(self):
+        return self._kwargs.get('cookies')
 
-	@property
-	def post_data(self):
-		return self._kwargs.get('data')
+    @cookies.setter
+    def cookies(self, cookies):
+        self._kwargs['cookies'] = cookies
 
-	@post_data.setter
-	def post_data(self, data):
-		self._kwargs['data'] = data
+    @property
+    def post_data(self):
+        return self._kwargs.get('data')
 
-	@property
-	def text(self):
-		return self._kwargs.get('text')
+    @post_data.setter
+    def post_data(self, data):
+        self._kwargs['data'] = data
 
-	@text.setter
-	def text(self, text):
-		self._kwargs['text'] = text
+    @property
+    def text(self):
+        return self._kwargs.get('text')
 
-	@property
-	def kwargs(self):
-		return self._kwargs
+    @text.setter
+    def text(self, text):
+        self._kwargs['text'] = text
 
-	def __str__(self):
-		return '<%s %s>' % (self.__class__, self.method)
+    @property
+    def kwargs(self):
+        return self._kwargs
+
+    def __str__(self):
+        return '<%s %s>' % (self.__class__, self.method)
+
+if __name__ == '__main__':
+    wurl=Wurl('http://www.baidu.com')
+    print(wurl.hostname)

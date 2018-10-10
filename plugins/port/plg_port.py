@@ -20,6 +20,7 @@ class CifyPlugin(Plugin):
     def _run(self):
         logger.info("We are executing nmap,please wait a moment")
         try:
+            wurl = self.system.wurl
             self.do_scan('39.108.133.111')
         except PermissionError as e:
             logger.error(e)

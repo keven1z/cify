@@ -2,8 +2,15 @@
 <config>
     <plugins>
         <port>
-        <description>port plugins</description>
+        <description>port according to plugins</description>
         <id>10000</id>
         </port>
     </plugins>
+    <spiders>
+        <port>
+            <description>port according to spider</description>
+            <id>10000</id>
+        </port>
+    </spiders>
+
 </config>

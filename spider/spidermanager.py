@@ -42,10 +42,11 @@ class SpiderManager(Manager):
                 container.module_info['id'] = spdobj.s_id
             if container.module_obj is not None:
                 self.module_list.append(container)
-                self.module_hash[container.module_info['id']] = container
+                _id=str(container.module_info['id'])
+                self.module_hash[_id] = container
 
 
 if __name__ == '__main__':
     sm = SpiderManager()
     sm.load()
-    print(sm.module_hash[10000].module_obj)
+    print(sm.module_hash['10000'].module_obj)

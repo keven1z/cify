@@ -27,7 +27,9 @@ class System(object):
 class Config(object):
     def __init__(self):
         self._port_plugin_id = None
+        self._port_spider_id = None
         self._whois_plugin_id = None
+        self._whois_spider_id = None
 
     @property
     def port_plugin_id(self):
@@ -36,3 +38,11 @@ class Config(object):
     @port_plugin_id.setter
     def port_plugin_id(self, port_plugin_id):
         self._port_plugin_id = port_plugin_id
+
+    @property
+    def port_spider_id(self):
+        return self._port_spider_id
+
+    @port_spider_id.setter
+    def port_spider_id(self, port_spider_id):
+        self._port_spider_id = port_spider_id

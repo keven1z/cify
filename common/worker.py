@@ -5,13 +5,12 @@
 # (C) 2018 zii. All rights Reserved# 
 #########################################################  
 import threading
-import time
 
 
 class Worker(threading.Thread):
-    def __init__(self, wurl):
+    def __init__(self, system):
         threading.Thread.__init__(self)
-        self.wurl = wurl
+        self.system = system
 
     def _run(self):
         raise Exception('unimplemented method')
@@ -21,3 +20,18 @@ class Worker(threading.Thread):
 
     def _do_job(self):
         raise Exception('unimplemented method')
+
+
+class WorkerFactory(object):
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def create_worker(cls, system):
+        return cls(system)
+
+
+
+if __name__ == '__main__':
+    worker=WorkerFactory.create_worker(Worker, 's')
+    worker.start()

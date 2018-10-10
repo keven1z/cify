@@ -42,7 +42,8 @@ class PluginManager(Manager):
                 container.module_info['id'] = obj._id
             if container.module_obj is not None:
                 self.module_list.append(container)
-                self.module_hash[container.module_info['id']] = container
+                id = str(container.module_info['id'])
+                self.module_hash[id] = container
 
 
 if __name__ == '__main__':

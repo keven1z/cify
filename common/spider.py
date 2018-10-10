@@ -13,8 +13,8 @@ class Spider(object):
     def _run(self, host):
         raise Exception('unimplemented method')
 
-    def run(self, host):
-        self._run(host)
+    def run(self, system):
+        self._run(system)
         endtime=time.time()
         logger.error('totally used time:%s', str(endtime-self.starttime))
         self.report()
