@@ -21,7 +21,7 @@ class PluginManager(Manager):
         results = []
         for root, plugin_dirs, files in os.walk(spd_home):
             for name in files:
-                results = self._add_newest_module(results, os.path.join(root, name), r'\\plg.*\.py?$')
+                results = self._add_newest_module(results, os.path.join(root, name), r'plg.*\.py?$')
         for result in results:
             path = os.path.dirname(result)
             if path not in sys.path:

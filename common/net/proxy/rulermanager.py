@@ -17,7 +17,7 @@ class RulerManager(Manager):
         results = []
         for root, plugin_dirs, files in os.walk(module_home):
             for name in files:
-                results = self._add_newest_module(results, os.path.join(root, name), r'\\ruler.*\.py?$')
+                results = self._add_newest_module(results, os.path.join(root, name), r'ruler.*\.py?$')
         for result in results:
             path = os.path.dirname(result)
             if path not in sys.path:
