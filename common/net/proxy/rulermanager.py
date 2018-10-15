@@ -5,7 +5,7 @@ import os
 import traceback
 import importlib.util
 
-logger = logging.instance().getLogger()
+logger = logging.getLogger('debug')
 
 
 class RulerManager(Manager):

@@ -3,12 +3,11 @@
 ##################################
 from common.log.logUtil import LogUtil as logging
 import sys
-import os
 import traceback
 import importlib.util
 from common.manager import *
 
-logger = logging.instance().getLogger()
+logger = logging.getLogger(__name__)
 
 
 class SpiderManager(Manager):

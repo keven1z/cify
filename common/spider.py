@@ -1,7 +1,10 @@
 #__*__coding:utf-8__*__
+#########################################################
+# (C)  zii .All rights Reserved#
+#########################################################
 import time
 from common.log.logUtil import LogUtil as logging
-logger = logging.instance().getLogger()
+logger = logging.getLogger(__name__)
 class Spider(object):
 
     def __init__(self):

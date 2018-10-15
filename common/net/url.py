@@ -3,11 +3,16 @@ from urllib.parse import urlparse
 from common.net.constant import HttpConstant
 from common.log.logUtil import LogUtil as logging
 
-logging = logging.instance().getLogger()
+#########################################################
+# (C)  zii .All rights Reserved#
+#########################################################
 
 
-class Wurl(object):
-    """docstring for Wurl"""
+logging = logging.getLogger('debug')
+
+
+class WrappedUrl(object):
+    """docstring for WrappedUrl"""
 
     def __init__(self, url, **kwargs):
         self._request = WrappedRequest(**kwargs)
@@ -90,12 +95,17 @@ class Wurl(object):
     def cookies(self):
         return self._request.cookies
 
+    @property
+    def allow_cache(self):
+        return self._request.allow_cache
+
 
 class WrappedRequest(object):
-    def __init__(self, method=HttpConstant.GET, headers={}, proxy=None, auth=None, cookies=None, \
+    def __init__(self, method=HttpConstant.GET, allow_cache=False, headers={}, proxy=None, auth=None, cookies=None, \
                  data='', timeout=None, allow_redirects=False, desc_text="", **kwargs):
         kwargs = dict(kwargs)
         kwargs['method'] = method
+        kwargs['allow_cache'] = allow_cache
         kwargs['allow_redirects'] = allow_redirects
         kwargs['headers'] = dict(headers)
         if proxy:
@@ -119,6 +129,14 @@ class WrappedRequest(object):
     @method.setter
     def method(self, method):
         self._kwargs['method'] = method
+
+    @property
+    def allow_cache(self):
+        return self._kwargs.get('allow_cache')
+
+    @allow_cache.setter
+    def allow_cache(self, allow_cache):
+        self._kwargs['allow_cache'] = allow_cache
 
     @property
     def headers(self):
@@ -183,6 +201,7 @@ class WrappedRequest(object):
     def __str__(self):
         return '<%s %s>' % (self.__class__, self.method)
 
+
 if __name__ == '__main__':
-    wurl=Wurl('http://www.baidu.com')
+    wurl = WrappedUrl('http://www.baidu.com')
     print(wurl.hostname)

@@ -1,11 +1,11 @@
-from common.net.webUtil import Web
+from common.net.webUtil import Request
 from common.spider import Spider
 from common.log.logUtil import LogUtil as logging
 from spider.port.constant import PortConstant
 from common.net.proxy.ipproxy import IPProxy
 from concurrent.futures import ThreadPoolExecutor
-
-logger = logging.instance().getLogger()
+from common.net.url import WrappedUrl
+logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
 
@@ -14,7 +14,7 @@ class CifySpider(Spider):
         super(CifySpider, self).__init__()
         self.s_id = 10000
         self._url = 'http://tool.chinaz.com/iframe.ashx?t=port&callback='  # chinaz的接口
-        self.client = Web()
+        self.client = Request()
         self.port_status = {}
         self.proxy = IPProxy()
         self._target = None
@@ -42,7 +42,9 @@ class CifySpider(Spider):
         data.append(hostlist)
         data.append(portlist)
         data.append(encode)
-        resp = self.client.request('POST', url, data=data, proxies=proxies, timeout=8.0)
+
+        wurl=WrappedUrl(url, method='POST')
+        resp = self.client.request(wurl, data=data, proxies=proxies, timeout=8.0)
         if resp is None:
             self.getPortStatus(port)
         status = self.filter(resp.text)
@@ -63,6 +65,9 @@ class CifySpider(Spider):
 
 
 if __name__ == '__main__':
+    from common.systeminfo import System
     spd = CifySpider()
-    host = '39.108.133.111'
-    spd.run(host)
+    host='http://39.108.133.111'
+    s=System()
+    s.wurl=WrappedUrl(host)
+    spd.run(s)

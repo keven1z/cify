@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-
+#########################################################
+# (C)  zii .All rights Reserved#
+#########################################################
 import argparse
 import sys
 

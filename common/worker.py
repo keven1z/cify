@@ -31,7 +31,6 @@ class WorkerFactory(object):
         return cls(system)
 
 
-
 if __name__ == '__main__':
-    worker=WorkerFactory.create_worker(Worker, 's')
+    worker = WorkerFactory.create_worker(Worker, 's')
     worker.start()

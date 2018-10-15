@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
+#########################################################
+# (C)  zii .All rights Reserved#
+#########################################################
+
 ###########################
 # 插件类                   #
 ###########################
-from common.log.logUtil import LogUtil
+
 
 
 class Plugin(object):

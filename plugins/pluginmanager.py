@@ -8,7 +8,7 @@ import traceback
 import importlib.util
 from common.manager import *
 
-logger = logging.instance().getLogger()
+logger = logging.getLogger(__name__)
 
 
 class PluginManager(Manager):

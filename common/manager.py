@@ -1,11 +1,11 @@
-############################
-###########管理类###########
-############################
+#########################################################
+# (C)  zii .All rights Reserved#
+#########################################################
 import re
 import os
 from common.log.logUtil import LogUtil as logging
 
-logger = logging.instance().getLogger()
+logger = logging.getLogger(__name__)
 
 
 class Manager(object):

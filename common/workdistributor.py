@@ -1,6 +1,7 @@
-###############
-# 工作分配######
-###############
+#########################################################
+# (C)  zii .All rights Reserved#
+#########################################################
+
 from common.worker import WorkerFactory
 from worker.worker_port import PortWorker
 from common.systeminfo import System

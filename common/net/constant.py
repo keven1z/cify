@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
+#########################################################
+# (C)  zii .All rights Reserved#
+#########################################################
+
 
 class HttpConstant(object):
     # supported request method
