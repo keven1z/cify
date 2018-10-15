@@ -13,7 +13,7 @@ class PortWorker(Worker):
 
     def _do_job(self):
         platform = self.system.platform
-        if platform == 'linux':
+        if platform == 'linux' or platform == 'darwin':
             plghash = {}
             plglist = []
             plgManager = PluginManager()

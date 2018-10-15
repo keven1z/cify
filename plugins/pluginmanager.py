@@ -49,4 +49,4 @@ class PluginManager(Manager):
 if __name__ == '__main__':
     sm = PluginManager()
     sm.load()
-    print(sm.module_hash[10000].module_obj)
+    print(sm.module_hash['10000'].module_obj)

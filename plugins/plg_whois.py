@@ -8,7 +8,7 @@ import sys
 from common.plugin import Plugin
 from common.log.logUtil import LogUtil as logging
 
-logging = logging.instance().getLogger()
+logging = logging.getLogger(__name__)
 
 
 class CifyPlugin(Plugin):

@@ -16,9 +16,10 @@ class Scanner(object):
     def _run(self):
         init.banner()
         self.system = init.read()
-        wd.work_port(self.system)
         wurl = WrappedUrl('http://www.ghostz.com.cn')
-        System.wurl = wurl
+        self.system.wurl = wurl
+        wd.work_port(self.system)
+
         option = opt_parse.parse_option()
 
 
