@@ -14,14 +14,14 @@ class Plugin(object):
 
     def __init__(self):
         self._id = -1
-        self.system = None
+        self.wharehouse = None
 
     @property
     def id(self):
         return self._id
 
-    def run(self, system):
-        self.system = system
+    def run(self, wharehouse):
+        self.wharehouse = wharehouse
         self._run()
 
     def _run(self):

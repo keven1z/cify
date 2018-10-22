@@ -5,11 +5,12 @@
 import sys
 
 
-class System(object):
+class Wharehouse(object):
     def __init__(self):
         self.platform = sys.platform
         self._config = Config()
         self._wurl = None
+        self._ip = None
 
     @property
     def config(self):
@@ -26,6 +27,14 @@ class System(object):
     @wurl.setter
     def wurl(self, wurl):
         self._wurl = wurl
+
+    @property
+    def ip(self):
+        return self._ip
+
+    @wurl.setter
+    def wurl(self, ip):
+        self._ip = ip
 
 
 class Config(object):

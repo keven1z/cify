@@ -6,8 +6,7 @@ from common.plugin import Plugin
 from common.log.logUtil import LogUtil as logging
 from libnmap.process import NmapProcess
 from libnmap.parser import NmapParser, NmapParserException
-from common.systeminfo import System
-import time
+
 
 logger = logging.getLogger(__name__)
 
@@ -17,12 +16,11 @@ class CifyPlugin(Plugin):
     def __init__(self):
         super(CifyPlugin, self).__init__()
         self._id = 10000
-        self.system = System()
 
     def _run(self):
         logger.info("We are executing nmap,please wait a moment")
         try:
-            wurl = self.system.wurl
+            wurl = self.wharehouse.wurl
             url=wurl.hostname
             report = self.do_scan(url)
             self.print_scan(report)

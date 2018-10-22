@@ -65,7 +65,7 @@ class CifySpider(Spider):
 
 
 if __name__ == '__main__':
-    from common.systeminfo import System
+    from common.wharehouse import System
     spd = CifySpider()
     host='http://39.108.133.111'
     s=System()

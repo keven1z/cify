@@ -3,22 +3,23 @@
 # @name:    cify - Web infomation Scanner
 # @author:  zii
 import common.optparse as opt_parse
-import common.init as init
+import common.config_init as init
 import common.workdistributor as wd
-from common.systeminfo import System
 from common.net.url import WrappedUrl
 
 
 class Scanner(object):
     def __init__(self):
-        self.system = None
+        self.wharehouse = None
 
     def _run(self):
         init.banner()
-        self.system = init.read()
-        wurl = WrappedUrl('http://www.ghostz.com.cn')
-        self.system.wurl = wurl
-        wd.work_port(self.system)
+        self.wharehouse = init.read()
+        wurl = WrappedUrl('http://www.baidu.com')
+        self.wharehouse.wurl = wurl
+        ip = init.cdn_check(wurl.hostname)
+        self.wharehouse.ip = ip
+        wd.work_port(self.wharehouse)
 
         option = opt_parse.parse_option()
 

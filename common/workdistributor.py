@@ -4,10 +4,10 @@
 
 from common.worker import WorkerFactory
 from worker.worker_port import PortWorker
-from common.systeminfo import System
+from common.wharehouse import Wharehouse
 
 
-def work_port(system):
-    if isinstance(system, System):
-        portworker = WorkerFactory.create_worker(PortWorker, system)
+def work_port(wharehouse):
+    if isinstance(wharehouse, Wharehouse):
+        portworker = WorkerFactory.create_worker(PortWorker, wharehouse)
         portworker.start()
