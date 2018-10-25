@@ -15,13 +15,11 @@ class Scanner(object):
     def _run(self):
         init.banner()
         self.wharehouse = init.read()
-        wurl = WrappedUrl('http://www.baidu.com')
-        self.wharehouse.wurl = wurl
-        ip = init.cdn_check(wurl.hostname)
+        option = opt_parse.parse_option()
+        self.wharehouse.wurl = WrappedUrl(option.url)
+        ip = init.cdn_check(self.wharehouse.wurl.hostname)
         self.wharehouse.ip = ip
         wd.work_port(self.wharehouse)
-
-        option = opt_parse.parse_option()
 
 
 if __name__ == '__main__':

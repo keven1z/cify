@@ -7,6 +7,8 @@
 import sys
 from common.plugin import Plugin
 from common.log.logUtil import LogUtil as logging
+import whois
+from common.utils.print import *
 
 logging = logging.getLogger(__name__)
 
@@ -18,8 +20,20 @@ class CifyPlugin(Plugin):
         self._id = 10001
 
     def _run(self):
-        platform = sys.platform  # 获取操作系统信息
-        if platform == 'win32':  # windows系统
-            pass
-        elif platform == 'linux':  # Linux系统
-            pass
+        hostname = self.wharehouse.wurl.hostname
+        result = whois.whois(hostname)
+        info('Starting whois')
+        start_mark('RESULT WHOIS')
+        result_print(result.text)
+        end_mark()
+        info('Whois done')
+
+
+if __name__ == '__main__':
+    from common.wharehouse import Wharehouse
+    from common.net.webUtil import WrappedUrl
+
+    w = Wharehouse()
+    wurl = WrappedUrl('http://www.ghostz.com.cn')
+    w.wurl = wurl
+    CifyPlugin().run(w)

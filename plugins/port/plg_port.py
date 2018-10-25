@@ -6,7 +6,7 @@ from common.plugin import Plugin
 from common.log.logUtil import LogUtil as logging
 from libnmap.process import NmapProcess
 from libnmap.parser import NmapParser, NmapParserException
-
+from common.utils.print import *
 
 logger = logging.getLogger(__name__)
 
@@ -18,10 +18,9 @@ class CifyPlugin(Plugin):
         self._id = 10000
 
     def _run(self):
-        logger.info("We are executing nmap,please wait a moment")
         try:
             wurl = self.wharehouse.wurl
-            url=wurl.hostname
+            url = wurl.hostname
             report = self.do_scan(url)
             self.print_scan(report)
         except PermissionError as e:
@@ -32,19 +31,20 @@ class CifyPlugin(Plugin):
         nmproc = NmapProcess(targets, options)
         rc = nmproc.run()
         if rc != 0:
-            print("nmap scan failed: {0}".format(nmproc.stderr))
-        print(type(nmproc.stdout))
+            error("nmap scan failed: {0}".format(nmproc.stderr))
+            logger.error("nmap scan failed: {0}".format(nmproc.stderr))
 
         try:
             parsed = NmapParser.parse(nmproc.stdout)
         except NmapParserException as e:
-            print("Exception raised while parsing scan: {0}".format(e.msg))
+            error("Exception raised while parsing scan: {0}".format(e.msg))
+            logger.error("Exception raised while parsing scan: {0}".format(e.msg))
 
         return parsed
 
     def print_scan(self, nmap_report):
 
-        print("Starting Nmap {0} ( http://nmap.org ) at {1}".format(
+        info("Starting Nmap {0} ( http://nmap.org ) at {1}".format(
             nmap_report.version,
             nmap_report.started))
         for host in nmap_report.hosts:
@@ -53,11 +53,12 @@ class CifyPlugin(Plugin):
             else:
                 tmp_host = host.address
 
-        print("Nmap scan report for {0} ({1})".format(
+        info("Nmap scan report for {0} ({1})".format(
             tmp_host,
             host.address))
-        print("Host is {0}.".format(host.status))
-        print("  PORT     STATE         SERVICE")
+        start_mark('PORT RESULT')
+
+        result_print("  PORT     STATE         SERVICE")
 
         for serv in host.services:
             pserv = "{0:>5s}/{1:3s}  {2:12s}  {3}".format(
@@ -67,9 +68,10 @@ class CifyPlugin(Plugin):
                 serv.service)
             if len(serv.banner):
                 pserv += " ({0})".format(serv.banner)
-            print(pserv)
 
-        print(nmap_report.summary)
+            result_print(pserv)
+        end_mark()
+        info(nmap_report.summary)
 
 
 '''

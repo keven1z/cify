@@ -9,7 +9,7 @@ import sys
 
 def parse_option():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-u", "--url", dest="url", help="please specify a url to scan", required=False)
+    parser.add_argument("-u", "--url", dest="url", help="please specify a url to scan", required=True)
     parser.add_argument("-p", "--port", dest="port", action='store_true', help="Whether to scan the port")
     options = parser.parse_args()
     option = Option()

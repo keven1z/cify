@@ -3,6 +3,8 @@
 #########################################################
 from dns import resolver, rdtypes
 import os
+import sys
+from common.utils.print import *
 from common.log.logUtil import LogUtil as logging
 
 logger = logging.getLogger(__name__)
@@ -47,9 +49,15 @@ class CDNDetect(object):
         return set(self.ip_list), set(self.server_list)
 
     def _parse_ip(self, host, dns_sever):
-        rel = resolver.Resolver()
-        rel.namesevers = dns_sever
-        ans = rel.query(host, "A")
+        try:
+            rel = resolver.Resolver()
+            rel.namesevers = dns_sever
+            ans = rel.query(host, "A")
+        except ValueError as v:
+            error('CDN check failed')
+            logger.error('cdn check failed')
+            sys.exit(0)
+
         for i in ans.response.answer:
             for j in i.items:
                 if isinstance(j, rdtypes.IN.A.A):
