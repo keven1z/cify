@@ -7,6 +7,7 @@ from common.log.logUtil import LogUtil as logging
 from libnmap.process import NmapProcess
 from libnmap.parser import NmapParser, NmapParserException
 from common.utils.print import *
+import sys
 
 logger = logging.getLogger(__name__)
 
@@ -27,6 +28,7 @@ class CifyPlugin(Plugin):
             logger.error(e)
 
     def do_scan(self, targets, options='-sV'):
+        info('Starting scaning port')
         parsed = None
         nmproc = NmapProcess(targets, options)
         rc = nmproc.run()
@@ -39,14 +41,12 @@ class CifyPlugin(Plugin):
         except NmapParserException as e:
             error("Exception raised while parsing scan: {0}".format(e.msg))
             logger.error("Exception raised while parsing scan: {0}".format(e.msg))
+            sys.exit(0)
 
         return parsed
 
     def print_scan(self, nmap_report):
 
-        info("Starting Nmap {0} ( http://nmap.org ) at {1}".format(
-            nmap_report.version,
-            nmap_report.started))
         for host in nmap_report.hosts:
             if len(host.hostnames):
                 tmp_host = host.hostnames.pop()

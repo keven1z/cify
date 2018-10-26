@@ -13,7 +13,10 @@ def parse_option():
     parser.add_argument("-p", "--port", dest="port", action='store_true', help="Whether to scan the port")
     options = parser.parse_args()
     option = Option()
-    option.url = options.url
+    url = options.url
+    if not (url.startswith('http://') or url.startswith('https://')):
+        url = 'http://' + url
+    option.url = url
     option.port = options.port
     return option
 

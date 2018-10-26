@@ -50,18 +50,19 @@ def read():
 
 
 def banner():
-    _banner = "       _____ ________ \n" + "__________(_)___  __/_____  __\n" + "_  ___/__  / __  /_  __  / / /\n" + "/ /__  _  /  _  __/  _  /_/ / \n" + "\___/  /_/   /_/     _\__, /  \n" + "                     /____/  "
+    _banner = "       _____ ________ \n" \
+              "__________(_)___  __/_____  __\n" \
+                "_  ___/__  / __  /_  __  / / /\n" \
+                "/ /__  _  /  _  __/  _  /_/ / \n" \
+                "\___/  /_/   /_/     _\__, /  \n" \
+                "                     /____/  \n"
     _banner = _banner + 'Copyright [2018.9-2018.11] [zii]'
     print(_banner)
     print()
+    info('Starting CIFY 1.0  ')
 
 
 def cdn_check(host):
     cdn = CDNDetect(host)
-    is_cdn, ip, cdn_name = cdn._check()
-    if is_cdn:
-        logger.debug('The URL has cdn ,can\'t scan')
-        warn('The ' + host + ' has cdn ,can\'t scan')
-        sys.exit(0)
-    else:
-        return ip
+    ip = cdn.check()
+    return ip

@@ -1,0 +1,32 @@
+18-10-25 21:53:20 ERROR {73174-123145483911168 plg_port.do_scan:35} nmap scan failed: 
+18-10-25 21:53:20 ERROR {73174-123145483911168 plg_port.do_scan:41} Exception raised while parsing scan: Wrong XML structure: cannot parse data
+18-10-26 09:29:55 ERROR {1699-140734786213312 cdn_check._parse_ip:62} cdn check failed
+18-10-26 09:58:13 ERROR {2017-140734952936896 cdn_check._parse_ip:66} CDN check failed,reason:None of DNS query names exist: www.leesec.cn., www.leesec.cn.local.
+18-10-26 13:53:16 WARNING {3836-140734909027776 cdn_check._check:60} www.kjtpay.com is using 阿里云(ALiyun) CDN
+18-10-26 13:55:33 WARNING {3870-140734939755968 cdn_check._check:60} www.kjtpay.com is using 阿里云(ALiyun) CDN
+18-10-26 13:56:01 WARNING {3879-140734933145024 cdn_check._check:58} www.kjtpay.com is using 阿里云(ALiyun) CDN
+18-10-26 13:56:24 INFO {3888-140734758667712 cdn_check._check:67} Not detect CDN
+18-10-26 13:56:38 INFO {3897-140734907119040 cdn_check._check:67} Not detect CDN
+18-10-26 13:56:43 INFO {3903-140734844626368 cdn_check._check:67} Not detect CDN
+18-10-26 13:56:55 INFO {3911-140734986458560 cdn_check._check:67} Not detect CDN
+18-10-26 13:57:15 ERROR {3920-140734759933376 cdn_check._parse_ip:91} CDN check failed,reason:None of DNS query names exist: https://www.google.com/., https://www.google.com/.localdomain.
+18-10-26 13:57:23 INFO {3927-140734968821184 cdn_check._check:67} Not detect CDN
+18-10-26 13:57:48 INFO {3938-140734816835008 cdn_check._check:67} Not detect CDN
+18-10-26 13:59:21 INFO {3978-140734754760128 cdn_check._check:68} Not detect CDN,ip:185.199.109.153
+18-10-26 13:59:40 INFO {3987-140734866445760 cdn_check._check:68} Not detect CDN,ip:115.239.211.112
+18-10-26 13:59:44 INFO {3992-140734870386112 cdn_check._check:68} Not detect CDN,ip:115.239.211.112
+18-10-26 13:59:45 INFO {3995-140734832788928 cdn_check._check:68} Not detect CDN,ip:115.239.211.112
+18-10-26 13:59:46 INFO {4000-140734775133632 cdn_check._check:68} Not detect CDN,ip:115.239.211.112
+18-10-26 13:59:47 INFO {4002-140734810736064 cdn_check._check:68} Not detect CDN,ip:115.239.211.112
+18-10-26 14:00:04 INFO {4015-140734746973632 cdn_check._check:68} Not detect CDN,ip:47.93.95.103
+18-10-26 14:00:05 INFO {4019-140734989223360 cdn_check._check:68} Not detect CDN,ip:47.93.95.103
+18-10-26 14:00:06 INFO {4022-140734763713984 cdn_check._check:68} Not detect CDN,ip:47.93.95.103
+18-10-26 14:00:07 INFO {4027-140734872630720 cdn_check._check:68} Not detect CDN,ip:47.93.95.103
+18-10-26 14:00:08 INFO {4030-140734791435712 cdn_check._check:68} Not detect CDN,ip:47.93.95.103
+18-10-26 18:58:57 INFO {7042-140734752863680 cdn_check._check:68} Not detect CDN,ip:47.93.95.103
+18-10-26 19:04:08 INFO {7118-140734864483776 cdn_check.check:68} Not detect CDN,ip:47.93.95.103
+18-10-26 19:04:20 INFO {7124-140734975325632 cdn_check.check:68} Not detect CDN,ip:23.88.228.174
+18-10-26 19:04:57 ERROR {7124-123145565802496 plg_port.do_scan:36} nmap scan failed: 
+18-10-26 19:04:57 ERROR {7124-123145565802496 plg_port.do_scan:42} Exception raised while parsing scan: Wrong XML structure: cannot parse data
+18-10-26 19:04:59 INFO {7143-140734754739648 cdn_check.check:68} Not detect CDN,ip:23.88.228.174
+18-10-26 19:19:42 INFO {7296-140734946461120 cdn_check.check:68} Not detect CDN,ip:23.88.228.174

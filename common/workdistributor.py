@@ -12,5 +12,7 @@ def work_port(wharehouse):
     if isinstance(wharehouse, Wharehouse):
         portworker = WorkerFactory.create_worker(PortWorker, wharehouse)
         portworker.start()
+        portworker.join()
         whoisworker = WorkerFactory.create_worker(WhoisWorker, wharehouse)
         whoisworker.start()
+        whoisworker.join()

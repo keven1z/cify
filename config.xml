@@ -7,7 +7,7 @@
         </port>
         <whois>
         <description>whois according to plugins</description>
-        <id>10000</id>
+        <id>10001</id>
         </whois>
     </plugins>
     <spiders>

@@ -18,12 +18,16 @@ class CDNDetect(object):
         self.server_list = []
         self.cdn_list = []
         self.host = host
+        self.probability = 0
 
-    def _server_load(self):
+    def _server_load(self):  # load cdn_server.txt
         try:
             with open(os.path.abspath(os.path.dirname(__file__)) + '/data/cdn_server.txt', 'r') as f:
                 for server in f.readlines():
-                    self.cdn_list.append(server.strip())
+                    server = server.strip()
+                    servers = server.split('#')
+                    if len(servers) == 3:
+                        self.cdn_list.append(servers)
         except NotADirectoryError as e:
             logger.error(str(e))
         except FileNotFoundError as e:
@@ -31,16 +35,38 @@ class CDNDetect(object):
         finally:
             return None
 
-    def _check(self):
+    def check(self):  # detect CDN
+        info('Detecting CDN')
         self._server_load()
         ip_list, server_list = self._get_ip_server_list()
+        cdn_en = ''
+        cdn_zh = ''
         if len(ip_list) > 1:
-            cdn_name = 'UNKNOWN'
-            # for cdn in self.cdn_list:
-            # if cdn in server_list:
-            #
-            return True, None, cdn_name
-        return False, ip_list.pop(), None
+            self.probability += 30
+        for cdns in self.cdn_list:
+            cdn_url = cdns[0]
+            p_cdn_en = cdns[1]
+            p_cdn_zh = cdns[2]
+            for target in self.server_list:
+                if target.find(cdn_url) != -1:
+                    cdn_en = p_cdn_en
+                    cdn_zh = p_cdn_zh
+                    self.probability += 70
+                    break
+        if self.probability > 80:
+            warn(self.host + ' is using ' + cdn_zh + '(' + cdn_en + ')' + ' CDN')
+            logger.warn(self.host + ' is using ' + cdn_zh + '(' + cdn_en + ')' + ' CDN')
+            sys.exit(0)
+
+        elif self.probability > 60:
+            warn(self.host + 'is very likely to use a CDN')
+            logger.warn(self.host + 'is very likely to use a CDN')
+            sys.exit(0)
+        else:
+            ip = self.ip_list.pop(0)
+            info('Not detect CDN,ip:' + ip)
+            logger.info('Not detect CDN,ip:' + ip)
+            return ip
 
     def _get_ip_server_list(self):
 
@@ -54,8 +80,16 @@ class CDNDetect(object):
             rel.namesevers = dns_sever
             ans = rel.query(host, "A")
         except ValueError as v:
-            error('CDN check failed')
-            logger.error('cdn check failed')
+            error('CDN check failed,reason:' + str(v))
+            logger.error('CDN check failed,reason:' + str(v))
+            sys.exit(0)
+        except AttributeError as e:
+            error('CDN check failed,reason:' + str(e))
+            logger.error('CDN check failed,reason:' + str(e))
+            sys.exit(0)
+        except resolver.NXDOMAIN as m:
+            error('CDN check failed,reason:' + str(m))
+            logger.error('CDN check failed,reason:' + str(m))
             sys.exit(0)
 
         for i in ans.response.answer:
@@ -69,5 +103,5 @@ class CDNDetect(object):
 
 
 if __name__ == '__main__':
-    cdn = CDNDetect("www.ghostz.com.cn")
-    print(cdn._check())
+    cdn = CDNDetect("www.freebuf.com")
+    cdn.check()
