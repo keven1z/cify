@@ -1,4 +1,4 @@
-requests==2.20
+requests==2.20.0
 logging==2 0.1.2
 traceback==2 1.4.0
 lxml==4.2.5
