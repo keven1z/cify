@@ -13,3 +13,5 @@ termcolor
 python-whois
 netifaces
 kamene
+pluginbase
+chardet

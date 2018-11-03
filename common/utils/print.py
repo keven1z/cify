@@ -1,4 +1,5 @@
 from termcolor import colored, cprint
+import time
 
 
 def warn(string, flag="[!]"):
@@ -9,8 +10,9 @@ def error(string, flag="[-]"):
     cprint(flag + string, 'red')
 
 
-def info(string, flag="[+]"):
-    cprint(flag + string, 'green')
+def info(string, flag="[+]", end='\n'):
+    time.sleep(1)
+    cprint(flag + string, 'green', end=end)
 
 
 def result_print(string):

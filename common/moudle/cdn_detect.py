@@ -35,7 +35,7 @@ class CDNDetect(object):
         finally:
             return None
 
-    def check(self):  # detect CDN
+    def run(self):  # detect CDN
         info('Detecting CDN')
         self._server_load()
         ip_list, server_list = self._get_ip_server_list()
@@ -104,4 +104,4 @@ class CDNDetect(object):
 
 if __name__ == '__main__':
     cdn = CDNDetect("www.freebuf.com")
-    cdn.check()
+    cdn.run()

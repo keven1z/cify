@@ -18,3 +18,4 @@ class HttpConstant(object):
     TRACE = 'TRACE'
     MOVE = 'MOVE'
     COPY = 'COPY'
+    RC_ERROR = 601

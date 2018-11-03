@@ -29,15 +29,17 @@ class CifyPlugin(Plugin):
 
     def do_scan(self, targets, options='-sV'):
         info('Starting scaning port')
-        parsed = None
-        nmproc = NmapProcess(targets, options)
-        rc = nmproc.run()
-        if rc != 0:
-            error("nmap scan failed: {0}".format(nmproc.stderr))
-            logger.error("nmap scan failed: {0}".format(nmproc.stderr))
-
         try:
+            parsed = None
+            nmproc = NmapProcess(targets, options)
+            rc = nmproc.run()
+            if rc != 0:
+                error("nmap scan failed: {0}".format(nmproc.stderr))
+                logger.error("nmap scan failed: {0}".format(nmproc.stderr))
+
             parsed = NmapParser.parse(nmproc.stdout)
+        except KeyboardInterrupt:
+            raise KeyboardInterrupt
         except NmapParserException as e:
             error("Exception raised while parsing scan: {0}".format(e.msg))
             logger.error("Exception raised while parsing scan: {0}".format(e.msg))
@@ -46,7 +48,7 @@ class CifyPlugin(Plugin):
         return parsed
 
     def print_scan(self, nmap_report):
-
+        import time
         for host in nmap_report.hosts:
             if len(host.hostnames):
                 tmp_host = host.hostnames.pop()
@@ -56,6 +58,7 @@ class CifyPlugin(Plugin):
         info("Nmap scan report for {0} ({1})".format(
             tmp_host,
             host.address))
+        time.sleep(1)
         start_mark('PORT RESULT')
 
         result_print("  PORT     STATE         SERVICE")

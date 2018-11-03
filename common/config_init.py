@@ -5,8 +5,9 @@
 from xml.dom.minidom import parse
 from common.wharehouse import Wharehouse
 from common.log.logUtil import LogUtil as logging
-from common.moudle.cdn_check import CDNDetect
+from common.moudle.cdn_detect import CDNDetect
 from common.utils.print import *
+from common.moudle.waf_detect import WafDetect
 import sys
 
 logger = logging.getLogger(__name__)
@@ -52,10 +53,10 @@ def read():
 def banner():
     _banner = "       _____ ________ \n" \
               "__________(_)___  __/_____  __\n" \
-                "_  ___/__  / __  /_  __  / / /\n" \
-                "/ /__  _  /  _  __/  _  /_/ / \n" \
-                "\___/  /_/   /_/     _\__, /  \n" \
-                "                     /____/  \n"
+              "_  ___/__  / __  /_  __  / / /\n" \
+              "/ /__  _  /  _  __/  _  /_/ / \n" \
+              "\___/  /_/   /_/     _\__, /  \n" \
+              "                     /____/  \n"
     _banner = _banner + 'Copyright [2018.9-2018.11] [zii]'
     print(_banner)
     print()
@@ -64,5 +65,11 @@ def banner():
 
 def cdn_check(host):
     cdn = CDNDetect(host)
-    ip = cdn.check()
+    ip = cdn.run()
     return ip
+
+
+def waf_check(wharehouse):
+    waf = WafDetect(wharehouse)
+    waf_name = waf.run()
+    return waf_name
