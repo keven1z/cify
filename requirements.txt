@@ -1,7 +1,17 @@
-requests
-logging
-traceback
+requests==2.20
+logging==2 0.1.2
+traceback==2 1.4.0
 lxml==4.2.5
 parse==1.9.0
 requests-cache==0.4.13
-argparse
+argparse==1.4.0
+ConcurrentLogHandler==0.9.1
+python-libnmap==0.7.0
+IPy==0.83
+dnspython==1.15.0
+termcolor
+python-whois
+netifaces
+kamene
+pluginbase
+chardet
