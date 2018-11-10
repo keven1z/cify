@@ -5,6 +5,7 @@ from worker.work_whois import WhoisWorker
 from common.utils.print import *
 import sys
 
+
 class MoudleManager(object):
 
     def __init__(self, ):
@@ -23,9 +24,7 @@ class MoudleManager(object):
             warn('System has been exited')
             sys.exit(1)
 
-
     def _load_whois_moudle(self, wharehouse):
         whois_worker = WorkerFactory.create_worker(WhoisWorker, wharehouse)
         whois_worker.start()
         whois_worker.join()
-

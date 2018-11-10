@@ -21,4 +21,4 @@ def is_waf(self):
     if r is None:
         return False
 
-    return r.status == 200
+    return r.status_code == 200

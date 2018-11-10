@@ -2,6 +2,7 @@
 from urllib.parse import urlparse
 from common.net.constant import HttpConstant
 from common.log.logUtil import LogUtil as logging
+from tld import get_fld
 import lxml.html
 import traceback
 import re
@@ -45,6 +46,17 @@ class WrappedUrl(object):
         components = urlparse(self._url)
         hostname = components.hostname
         return hostname
+
+    @property
+    def domain(self):
+        domain = get_fld(self._url)
+        return domain
+
+    @property
+    def scheme(self):
+        components = urlparse(self._url)
+        scheme = components.scheme
+        return scheme
 
     @property
     def method(self):
@@ -296,7 +308,7 @@ class WrappedResponse(object):
         self._raw_headers = raw_headers
         self._total_time = total_time
         self._reason = reason
-        self._version =version
+        self._version = version
 
     @property
     def used_time(self):
@@ -377,5 +389,5 @@ class WrappedResponse(object):
 
 
 if __name__ == '__main__':
-    wurl = WrappedUrl('http://www.baidu.com')
-    print(wurl.hostname)
+   w= WrappedUrl('http://www.baidu.com')
+   print(w.schema)

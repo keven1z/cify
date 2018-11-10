@@ -8,6 +8,7 @@ from common.log.logUtil import LogUtil as logging
 from common.moudle.cdn_detect import CDNDetect
 from common.utils.print import *
 from common.moudle.waf_detect import WafDetect
+from data.config import *
 import sys
 
 logger = logging.getLogger(__name__)
@@ -20,7 +21,7 @@ ID = 'id'
 
 def read():
     try:
-        dom = parse("config.xml")
+        dom = parse(CONFIG_FILE_PATH)
         # 获取文件元素对象
         warehouse = Wharehouse()
         document = dom.documentElement
@@ -57,7 +58,7 @@ def banner():
               "/ /__  _  /  _  __/  _  /_/ / \n" \
               "\___/  /_/   /_/     _\__, /  \n" \
               "                     /____/  \n"
-    _banner = _banner + 'Copyright [2018.9-2018.11] [zii]'
+    _banner = _banner + 'Copyright [' + TIME + '] [' + AUTHOR + ']'
     print(_banner)
     print()
     info('Starting CIFY 1.0  ')

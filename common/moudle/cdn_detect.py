@@ -4,6 +4,7 @@
 from dns import resolver, rdtypes
 import os
 import sys
+from data.config import *
 from common.utils.print import *
 from common.log.logUtil import LogUtil as logging
 
@@ -22,7 +23,7 @@ class CDNDetect(object):
 
     def _server_load(self):  # load cdn_server.txt
         try:
-            with open(os.path.abspath(os.path.dirname(__file__)) + '/data/cdn_server.txt', 'r') as f:
+            with open(os.path.abspath(os.path.dirname(__file__)) + '/../../'+CDN_SERVER_PATH, 'r') as f:
                 for server in f.readlines():
                     server = server.strip()
                     servers = server.split('#')

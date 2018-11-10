@@ -1,3 +1,0 @@
-# 参考
-## wafw00f
-### GitHub：https://github.com/EnableSecurity/wafw00f

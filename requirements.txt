@@ -15,3 +15,4 @@ netifaces
 kamene
 pluginbase
 chardet
+tld

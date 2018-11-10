@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <plugins>
+        <port>
+        <description>port according to plugins</description>
+        <id>10000</id>
+        </port>
+        <whois>
+        <description>whois according to plugins</description>
+        <id>10001</id>
+        </whois>
+    </plugins>
+    <spiders>
+        <port>
+            <description>port according to spider</description>
+            <id>10000</id>
+        </port>
+    </spiders>
+
+</config>
