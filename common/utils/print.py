@@ -11,7 +11,6 @@ def error(string, flag="[-]"):
 
 
 def info(string, flag="[+]", end='\n'):
-    time.sleep(1)
     cprint(flag + string, 'green', end=end)
 
 

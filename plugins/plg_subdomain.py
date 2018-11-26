@@ -5,7 +5,7 @@ from common.plugin import Plugin
 from data.config import *
 import os
 import requests
-from common.thread.threadpool import *
+
 
 logger = logging.getLogger(__name__)
 

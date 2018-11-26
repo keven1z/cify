@@ -8,6 +8,7 @@ import copy
 import urllib.parse
 from common.log.logUtil import LogUtil as logging
 from common.utils.print import *
+from common.thread.thread_pool import ThreadPool
 
 logging = logging.getLogger(__name__)
 
@@ -26,6 +27,8 @@ class WafDetect(object):
         self.wharehouse = wharehouse
         self.client = Request()
         self.path = '/'
+        self.threadPool = ThreadPool()
+        self.flag = False
 
     def request(self, method=None, path=''):
         wurl = self.wharehouse.wurl
@@ -130,6 +133,8 @@ class WafDetect(object):
         if attack:
             for attack in self.attacks:
                 w_resp = attack(self)
+                if w_resp is None:
+                    return
                 header_val = w_resp.headers.get(header_name) or w_resp.headers.get(header_name.lower())
                 if header_val:
                     if header_name == 'Set-Cookie':
@@ -139,9 +144,10 @@ class WafDetect(object):
                     for header_val in header_vals:
                         if re.match(match, header_val, re.IGNORECASE):
                             return True
-
         else:
             w_resp = self.normal_request()
+            if w_resp is None:
+                return
             header_val = w_resp.headers.get(header_name)
             if header_val:
                 if header_name == 'Set-Cookie':
@@ -156,27 +162,35 @@ class WafDetect(object):
     def match_cookie(self, match):
         return self.match_header(('Set-Cookie', match))
 
+    def check_waf(self, plugins_fuc, plugin_name):
+        logging.info('Check for ' + plugin_name)
+        info('Check for ' + plugin_name)
+        if plugins_fuc.is_waf(self):
+            logging.info('Found waf,name:' + plugin_name)
+            info('Found waf,name:' + plugins_fuc.NAME)
+            self.flag = True
+            self.threadPool.clear_tasks()
+
     def run(self):
         plugins_dict = self.load_plugins()
         if plugins_dict is not None:
-            info('Checking WAF')
+            info('Checking WAF...')
             for plugin_name, plugins_fuc in plugins_dict.items():
-                logging.info('Check for ' + plugin_name)
-
-                if plugins_fuc.is_waf(self):
-                    logging.info('Found waf,name:' + plugin_name)
-                    info('Found waf,name:' + plugins_fuc.NAME)
-                    return plugin_name
-        logging.info('The '+self.wharehouse.wurl.url+' is probably not WAF')
-        info('The '+self.wharehouse.wurl.url+' is probably not WAF')
-        return None
+                self.threadPool.add_task(self.check_waf, plugins_fuc, plugin_name)
+        self.threadPool.wait_all_complete()
+        if not self.flag:
+            logging.info('The ' + self.wharehouse.wurl.url + ' is probably not WAF')
+            info('The ' + self.wharehouse.wurl.url + ' is probably not WAF')
+            return None
 
 
 if __name__ == '__main__':
     from common.wharehouse import Wharehouse
     from common.net.url import WrappedUrl
 
+    s = time.time()
     w = WrappedUrl('http://www.safedog.cn/')
     whare = Wharehouse()
     whare.wurl = w
     WafDetect(whare).run()
+    warn('使用了' + str(time.time() - s))

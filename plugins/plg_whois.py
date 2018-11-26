@@ -21,12 +21,18 @@ class CifyPlugin(Plugin):
 
     def _run(self):
         hostname = self.wharehouse.wurl.hostname
-        result = whois.whois(hostname)
-        info('Starting whois')
-        start_mark('RESULT WHOIS')
-        result_print(result.text)
-        end_mark()
-        info('Whois done')
+        try:
+            info('Starting whois ' + hostname)
+            result = whois.whois(hostname)
+
+            start_mark('RESULT WHOIS')
+            result_print(result.text)
+            end_mark()
+            info('Whois done')
+        except OSError as e:
+            error('whois check failed')
+            logging.error('whois check failed,reason:' + str(e))
+            return
 
 
 if __name__ == '__main__':

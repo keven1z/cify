@@ -6,6 +6,7 @@ import requests
 from common.net.url import WrappedUrl, WrappedResponse
 import time
 import requests_cache
+
 from common.net.constant import HttpConstant
 
 #########################################################
@@ -23,17 +24,15 @@ class Request(object):
         if not isinstance(wurl, WrappedUrl):
             logger.error('wurl is not WrappedUrl')
             raise Exception
-        resp = self.do_request(wurl, **kwargs)
-        return resp
+        wresp = self.do_request(wurl, **kwargs)
+        return wresp
 
     def do_request(self, wurl, **kwargs):
-
         start_time = time.time()
         w_resp = None
         try:
             resp = self.client.request(wurl.method, wurl.url, **kwargs)
             w_resp = self._wrap_resp(resp, encoding=None)
-
         except requests.exceptions.ConnectionError:
             logger.info('ConnectionError when access %s', wurl.url)
             w_resp = WrappedResponse(status_code=HttpConstant.RC_ERROR, error_code=0)
@@ -62,4 +61,4 @@ class Request(object):
 if __name__ == '__main__':
     web = Request()
     res = web.request(WrappedUrl("http://www.baidu.com"))
-    print(res.headers.get('set-cookie') or res.headers.get('Set-Cookie'))
+    print(res)
