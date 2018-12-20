@@ -1,9 +1,4 @@
-#!/usr/bin/env python
-# -*- coding:utf-8 -*-
 
-######################################################### 
-# (C) 2000-2012 cseclabs Corporation. All rights Reserved# 
-#########################################################  
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-
 
