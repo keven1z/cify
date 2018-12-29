@@ -29,6 +29,9 @@
 * -u or --url :扫描的url
 * -p or --port :是否扫描端口，default:true
 
+## 输出结果txt
+### data/result下生成以host为名的txt文件
+
 # 示例
 ```
 python main.py -u  http://www.xxxx.cn
