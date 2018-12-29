@@ -11,6 +11,7 @@
 
 import threading
 from common.log import log_config
+import logging
 
 
 class LogUtil(object):
@@ -25,12 +26,8 @@ class LogUtil(object):
     DEBUG = logging.DEBUG
 
     @staticmethod
-    def getLogger(name=None, via_socket=True):
-        if name and name.find("result") != -1:
-            name = 'result'
-        import logging
+    def getLogger(name=None):
         logger = logging.getLogger(name)
-
         return logger
 
 

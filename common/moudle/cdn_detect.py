@@ -5,10 +5,10 @@ from dns import resolver, rdtypes
 import os
 import sys
 from data.config import *
-from common.utils.print import *
-from common.log.logUtil import LogUtil as logging
+from common.utils.printdata import *
+from common.log.log_util import LogUtil as log
 
-logger = logging.getLogger(__name__)
+logger = log.getLogger(__name__)
 
 
 class CDNDetect(object):
@@ -20,6 +20,7 @@ class CDNDetect(object):
         self.cdn_list = []
         self.host = host
         self.probability = 0
+        self.result = ResultExport.instance()
 
     def _server_load(self):  # load cdn_server.txt
         try:
@@ -38,6 +39,7 @@ class CDNDetect(object):
 
     def run(self):  # detect CDN
         info('Detecting CDN')
+        self.result.add_data('CDN:')
         self._server_load()
         ip_list, server_list = self._get_ip_server_list()
         cdn_en = ''
@@ -57,16 +59,18 @@ class CDNDetect(object):
         if self.probability > 80:
             warn(self.host + ' is using ' + cdn_zh + '(' + cdn_en + ')' + ' CDN')
             logger.warn(self.host + ' is using ' + cdn_zh + '(' + cdn_en + ')' + ' CDN')
+            self.result.add_data(cdn_zh)
             sys.exit(0)
 
         elif self.probability > 60:
             warn(self.host + 'is very likely to use a CDN')
             logger.warn(self.host + 'is very likely to use a CDN')
-            sys.exit(0)
+            self.result.add_data('very likely')
         else:
             ip = self.ip_list.pop(0)
             info('Not detect CDN,ip:' + ip)
             logger.info('Not detect CDN,ip:' + ip)
+            self.result.add_data('Not')
             return ip
 
     def _get_ip_server_list(self):

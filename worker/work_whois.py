@@ -1,6 +1,5 @@
 from common.worker import Worker
 from plugins.pluginmanager import PluginManager
-from spider.spidermanager import SpiderManager
 
 
 class WhoisWorker(Worker):
@@ -22,12 +21,4 @@ class WhoisWorker(Worker):
                 plglist, plghash = plgManager.get_modules()
             plugins = plghash[whois_plugin_id].module_obj
             plugins.run(self.wharehouse)
-        else:
-            spdManager = SpiderManager()
-            spdhash={}
-            spdlist=[]
-            port_spider_id = self.system.config.whois_plugin_id
-            if port_spider_id is not None:
-                spdlist, spdhash = spdManager.get_modules()
-            plugins = spdhash[whois_plugin_id].module_obj
-            plugins.run(self.wharehouse)
+

@@ -20,51 +20,15 @@ LOGGING = {
             'format': '%(asctime)s %(levelname)s {%(process)d-%(thread)d %(module)s.%(funcName)s:%(lineno)d} %(message)s',
             'datefmt': '%y-%m-%d %H:%M:%S'
         },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
-        'result': {
-            'format': '%(message)s'
-        },
     },
     'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
-        },
         'debug': {
             'class': 'logging.handlers.ConcurrentRotatingFileHandler',
-            'filename': os.path.realpath(__file__) + '/../../../log/' + 'debug.log',
+            'filename': os.path.realpath(__file__) + '/../../../logs/' + 'debug',
             'maxBytes': log_file_max_bytes,
             'backupCount': log_file_backup_count,
             'debug': False,
             'formatter': 'verbose'
-        },
-        'result': {
-            'class': 'logging.handlers.ConcurrentRotatingFileHandler',
-            'filename': os.path.realpath(__file__) + '/../../../log/' + 'result.log',
-            'maxBytes': log_file_max_bytes,
-            'backupCount': log_file_backup_count,
-            'debug': False,
-            'formatter': 'result'
-        },
-        'socket': {
-            'class': 'logging.handlers.SocketHandler',
-            'host': '127.0.0.1',
-            'port': int(os.environ.get('LOG_SERVER_PORT', handlers.DEFAULT_TCP_LOGGING_PORT)),
-            'formatter': 'verbose'
-        },
-    },
-    'loggers': {
-        'socket': {
-            'handlers': ['socket'],
-            'level': 'NOTSET',
-            'propagate': False,
-        },
-        'result': {
-            'handlers': ['result'],
-            'level': 'NOTSET',
-            'propagate': False,
         },
     },
     'root': {

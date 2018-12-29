@@ -2,53 +2,48 @@
 # (C)  zii .All rights Reserved#
 #########################################################
 
-from xml.dom.minidom import parse
+
 from common.wharehouse import Wharehouse
-from common.log.logUtil import LogUtil as logging
+from common.log.log_util import LogUtil as log
 from common.moudle.cdn_detect import CDNDetect
-from common.utils.print import *
+from common.utils.printdata import *
 from common.moudle.waf_detect import WafDetect
 from data.config import *
+import xml.etree.ElementTree as ET
+import os
+import traceback
 import sys
 
-logger = logging.getLogger(__name__)
-PLUGINS = 'plugins'
-SPIDERS = 'spiders'
+logger = log.getLogger(__name__)
 PORT = 'port'
 WHOIS = 'whois'
+CMS = 'cms'
 ID = 'id'
 
 
 def read():
     try:
-        dom = parse(CONFIG_FILE_PATH)
-        # 获取文件元素对象
         warehouse = Wharehouse()
-        document = dom.documentElement
-        plugins_nodes = document.getElementsByTagName(PLUGINS)[0]
-        spider_nodes = document.getElementsByTagName(SPIDERS)[0]
-        for element in plugins_nodes.childNodes:
-            if element.nodeName == PORT:
-                for node in element.childNodes:
-                    if node.nodeName == ID:
-                        port_plugin_id = node.childNodes[0].data
-                        warehouse.config.port_plugin_id = port_plugin_id
-            if element.nodeName == WHOIS:
-                for node in element.childNodes:
-                    if node.nodeName == ID:
-                        whois_plugin_id = node.childNodes[0].data
-                        warehouse.config.whois_plugin_id = whois_plugin_id
-        for element2 in spider_nodes.childNodes:
-            if element2.nodeName == PORT:
-                for node2 in element2.childNodes:
-                    if node2.nodeName == ID:
-                        port_spider_id = node2.childNodes[0].data
-                        warehouse.config.port_spider_id = port_spider_id
-    except Exception as e:
+        target_dict = {}
+        tree = ET.parse(os.getcwd() + '/' + CONFIG_FILE_PATH)
+        for elems in tree.iterfind('plugins/plugin'):
+            type = elems.get('type')
+            ele_dict = {}
+            for elem in list(elems):
+                ele_dict[elem.tag] = elem.text
+            target_dict[type] = ele_dict
+        id = target_dict[PORT][ID]
+        warehouse.config.port_plugin_id = id
+        id = target_dict[WHOIS][ID]
+        warehouse.config.whois_plugin_id = id
+        id = target_dict[CMS][ID]
+        warehouse.config.cms_id = id
+        return warehouse
+    except IndexError as e:
+        info('Initialize configuration failed')
         logger.error('Initialize configuration failed')
-        error('Initialize configuration failed')
+        logger.error(traceback.format_exc())
         sys.exit(0)
-    return warehouse
 
 
 def banner():
@@ -74,3 +69,7 @@ def waf_check(wharehouse):
     waf = WafDetect(wharehouse)
     waf_name = waf.run()
     return waf_name
+
+
+def init_result(filename):
+    ResultExport.instance().pre_export(filename)

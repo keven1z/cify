@@ -7,9 +7,9 @@ import queue
 import threading
 import traceback
 from data.config import *
-from common.log.logUtil import LogUtil as logging
+from common.log.log_util import LogUtil as log
 
-logger = logging.getLogger(__name__)
+logger = log.getLogger(__name__)
 
 
 class ThreadPool(object):

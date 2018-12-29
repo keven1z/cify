@@ -1,7 +1,7 @@
 # __*__coding:utf-8__*__
 from urllib.parse import urlparse
 from common.net.constant import HttpConstant
-from common.log.logUtil import LogUtil as logging
+from common.log.log_util import LogUtil as log
 from tld import get_fld
 import lxml.html
 import traceback
@@ -12,7 +12,7 @@ import re
 #########################################################
 
 
-logger = logging.getLogger(__name__)
+logger = log.getLogger(__name__)
 
 
 class WrappedUrl(object):
@@ -218,7 +218,7 @@ class WrappedRequest(object):
 
 
 def _is_text_response(headers):
-    if headers.has_key('Content-Type'):
+    if 'Content-Type' in headers:
         is_text = headers['Content-Type'].lower().find('text') > -1
         return is_text
     else:
@@ -388,6 +388,3 @@ class WrappedResponse(object):
         return '<%s %d>' % (self.__class__.__name__, self.status_code)
 
 
-if __name__ == '__main__':
-   w= WrappedUrl('http://www.baidu.com')
-   print(w.schema)

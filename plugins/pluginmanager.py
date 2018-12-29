@@ -1,14 +1,14 @@
 ##################################
 # 爬虫管理（包含）#
 ##################################
-from common.log.logUtil import LogUtil as logging
+from common.log.log_util import LogUtil as log
 import sys
 import os
 import traceback
 import importlib.util
 from common.manager import *
 
-logger = logging.getLogger(__name__)
+logger = log.getLogger(__name__)
 
 
 class PluginManager(Manager):

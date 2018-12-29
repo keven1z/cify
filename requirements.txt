@@ -11,8 +11,7 @@ IPy==0.83
 dnspython==1.15.0
 termcolor
 python-whois
-netifaces
-kamene
 pluginbase
 chardet
 tld
+bs4

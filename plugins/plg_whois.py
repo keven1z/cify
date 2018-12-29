@@ -6,11 +6,11 @@
 
 import sys
 from common.plugin import Plugin
-from common.log.logUtil import LogUtil as logging
+from common.log.log_util import LogUtil as log
 import whois
-from common.utils.print import *
+from common.utils.printdata import *
 
-logging = logging.getLogger(__name__)
+logging = log.getLogger(__name__)
 
 
 class CifyPlugin(Plugin):
@@ -18,15 +18,18 @@ class CifyPlugin(Plugin):
     def __init__(self):
         super(CifyPlugin, self).__init__()
         self._id = 10001
+        self.result = ResultExport.instance()
 
     def _run(self):
         hostname = self.wharehouse.wurl.hostname
         try:
             info('Starting whois ' + hostname)
+            self.result.add_data('whois:')
             result = whois.whois(hostname)
 
             start_mark('RESULT WHOIS')
             result_print(result.text)
+            self.result.add_data(result.text)
             end_mark()
             info('Whois done')
         except OSError as e:

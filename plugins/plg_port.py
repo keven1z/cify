@@ -3,13 +3,13 @@
 # 扫描端口插件
 #######################
 from common.plugin import Plugin
-from common.log.logUtil import LogUtil as logging
+from common.log.log_util import LogUtil as log
 from libnmap.process import NmapProcess
 from libnmap.parser import NmapParser, NmapParserException
-from common.utils.print import *
+from common.utils.printdata import *
 import sys
 
-logger = logging.getLogger(__name__)
+logger = log.getLogger(__name__)
 
 
 class CifyPlugin(Plugin):
@@ -17,6 +17,7 @@ class CifyPlugin(Plugin):
     def __init__(self):
         super(CifyPlugin, self).__init__()
         self._id = 10000
+        self.result = ResultExport.instance()
 
     def _run(self):
         try:
@@ -29,6 +30,7 @@ class CifyPlugin(Plugin):
 
     def do_scan(self, targets, options='-sV'):
         info('Starting scaning port')
+        self.result.add_data('port:')
         try:
             parsed = None
             nmproc = NmapProcess(targets, options)
@@ -49,6 +51,9 @@ class CifyPlugin(Plugin):
 
     def print_scan(self, nmap_report):
         import time
+        tmp_host = None
+        host =None
+
         for host in nmap_report.hosts:
             if len(host.hostnames):
                 tmp_host = host.hostnames.pop()
@@ -58,11 +63,10 @@ class CifyPlugin(Plugin):
         info("Nmap scan report for {0} ({1})".format(
             tmp_host,
             host.address))
-        time.sleep(1)
         start_mark('PORT RESULT')
 
         result_print("  PORT     STATE         SERVICE")
-
+        self.result.add_data(' PORT     STATE         SERVICE')
         for serv in host.services:
             pserv = "{0:>5s}/{1:3s}  {2:12s}  {3}".format(
                 str(serv.port),
@@ -73,6 +77,7 @@ class CifyPlugin(Plugin):
                 pserv += " ({0})".format(serv.banner)
 
             result_print(pserv)
+            self.result.add_data(pserv)
         end_mark()
         info(nmap_report.summary)
 

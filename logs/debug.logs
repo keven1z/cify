@@ -1,0 +1,122 @@
+18-12-29 14:48:39 INFO {4245-140734885234112 cdn_detect.run:72} Not detect CDN,ip:120.41.45.100
+18-12-29 14:48:39 DEBUG {4245-123145451827200 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145446572032 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145462337536 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145467592704 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145462337536 connectionpool._make_request:393} http://www.safedog.cn:80 "GET /cmd.exe HTTP/1.1" 404 631
+18-12-29 14:48:39 INFO {4245-123145462337536 webUtil.do_request:50} totally used 0.08312606811523438 to request http://www.safedog.cn/cmd.exe, response 404
+18-12-29 14:48:39 DEBUG {4245-123145462337536 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145446572032 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 DEBUG {4245-123145467592704 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 DEBUG {4245-123145451827200 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 INFO {4245-123145446572032 webUtil.do_request:50} totally used 0.11250901222229004 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 DEBUG {4245-123145446572032 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 INFO {4245-123145467592704 webUtil.do_request:50} totally used 0.11834502220153809 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 INFO {4245-123145451827200 webUtil.do_request:50} totally used 0.1194601058959961 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 INFO {4245-123145457082368 webUtil.do_request:50} totally used 0.11920881271362305 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 DEBUG {4245-123145467592704 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145451827200 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145462337536 connectionpool._make_request:393} http://www.safedog.cn:80 "GET /../../../../etc/passwd HTTP/1.1" 400 166
+18-12-29 14:48:39 INFO {4245-123145462337536 webUtil.do_request:50} totally used 0.054282188415527344 to request http://www.safedog.cn/../../../../etc/passwd, response 400
+18-12-29 14:48:39 DEBUG {4245-123145462337536 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145446572032 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 DEBUG {4245-123145462337536 connectionpool._make_request:393} http://www.safedog.cn:80 "GET /%3Cscript%3Ealert(1)%3C/script%3E.html HTTP/1.1" 200 2596
+18-12-29 14:48:39 INFO {4245-123145462337536 webUtil.do_request:50} totally used 0.04763007164001465 to request http://www.safedog.cn/<script>alert(1)</script>.html, response 200
+18-12-29 14:48:39 DEBUG {4245-123145462337536 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145467592704 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 INFO {4245-123145446572032 webUtil.do_request:50} totally used 0.08139300346374512 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 DEBUG {4245-123145446572032 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 DEBUG {4245-123145451827200 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 INFO {4245-123145467592704 webUtil.do_request:50} totally used 0.09180593490600586 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 DEBUG {4245-123145467592704 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 INFO {4245-123145457082368 webUtil.do_request:50} totally used 0.09079790115356445 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 INFO {4245-123145451827200 webUtil.do_request:50} totally used 0.10240721702575684 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 DEBUG {4245-123145451827200 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145462337536 connectionpool._make_request:393} http://www.safedog.cn:80 "GET //Admin_Files/ HTTP/1.1" 404 631
+18-12-29 14:48:39 INFO {4245-123145462337536 webUtil.do_request:50} totally used 0.0464019775390625 to request http://www.safedog.cn//Admin_Files/, response 404
+18-12-29 14:48:39 DEBUG {4245-123145462337536 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145446572032 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 DEBUG {4245-123145467592704 connectionpool._make_request:393} http://www.safedog.cn:80 "GET /cmd.exe HTTP/1.1" 404 631
+18-12-29 14:48:39 INFO {4245-123145467592704 webUtil.do_request:50} totally used 0.05228090286254883 to request http://www.safedog.cn/cmd.exe, response 404
+18-12-29 14:48:39 DEBUG {4245-123145467592704 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 DEBUG {4245-123145462337536 connectionpool._make_request:393} http://www.safedog.cn:80 "GET /%3Cscript%3Ealert%281%29%3C/script%3E.html HTTP/1.1" 200 2596
+18-12-29 14:48:39 INFO {4245-123145446572032 webUtil.do_request:50} totally used 0.092041015625 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 INFO {4245-123145462337536 webUtil.do_request:50} totally used 0.05477309226989746 to request http://www.safedog.cn/%3Cscript%3Ealert%281%29%3C/script%3E.html, response 200
+18-12-29 14:48:39 DEBUG {4245-123145451827200 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 DEBUG {4245-123145446572032 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145462337536 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 INFO {4245-123145457082368 webUtil.do_request:50} totally used 0.07785201072692871 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145467592704 connectionpool._make_request:393} http://www.safedog.cn:80 "GET /../../../../etc/passwd HTTP/1.1" 400 166
+18-12-29 14:48:39 INFO {4245-123145451827200 webUtil.do_request:50} totally used 0.09020495414733887 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 INFO {4245-123145467592704 webUtil.do_request:50} totally used 0.04932212829589844 to request http://www.safedog.cn/../../../../etc/passwd, response 400
+18-12-29 14:48:39 DEBUG {4245-123145451827200 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145467592704 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145446572032 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 DEBUG {4245-123145462337536 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 DEBUG {4245-123145467592704 connectionpool._make_request:393} http://www.safedog.cn:80 "GET /%3Cscript%3Ealert(1)%3C/script%3E.html HTTP/1.1" 200 2596
+18-12-29 14:48:39 INFO {4245-123145467592704 webUtil.do_request:50} totally used 0.06139492988586426 to request http://www.safedog.cn/<script>alert(1)</script>.html, response 200
+18-12-29 14:48:39 DEBUG {4245-123145467592704 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145451827200 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 INFO {4245-123145446572032 webUtil.do_request:50} totally used 0.0966958999633789 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 INFO {4245-123145446572032 waf_detect.check_waf:167} Found waf,name:safedog
+18-12-29 14:48:39 INFO {4245-123145462337536 webUtil.do_request:50} totally used 0.09576797485351562 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 INFO {4245-123145457082368 webUtil.do_request:50} totally used 0.10317301750183105 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 INFO {4245-123145451827200 webUtil.do_request:50} totally used 0.0915827751159668 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 DEBUG {4245-123145451827200 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145467592704 connectionpool._make_request:393} http://www.safedog.cn:80 "GET //Admin_Files/ HTTP/1.1" 404 631
+18-12-29 14:48:39 INFO {4245-123145467592704 webUtil.do_request:50} totally used 0.05472612380981445 to request http://www.safedog.cn//Admin_Files/, response 404
+18-12-29 14:48:39 DEBUG {4245-123145467592704 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 DEBUG {4245-123145451827200 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 DEBUG {4245-123145467592704 connectionpool._make_request:393} http://www.safedog.cn:80 "GET /%3Cscript%3Ealert%281%29%3C/script%3E.html HTTP/1.1" 200 2596
+18-12-29 14:48:39 INFO {4245-123145467592704 webUtil.do_request:50} totally used 0.04620099067687988 to request http://www.safedog.cn/%3Cscript%3Ealert%281%29%3C/script%3E.html, response 200
+18-12-29 14:48:39 INFO {4245-123145457082368 webUtil.do_request:50} totally used 0.08642697334289551 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 INFO {4245-123145451827200 webUtil.do_request:50} totally used 0.09003996849060059 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 INFO {4245-123145457082368 webUtil.do_request:50} totally used 0.08945178985595703 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 INFO {4245-123145457082368 webUtil.do_request:50} totally used 0.08115386962890625 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 INFO {4245-123145457082368 webUtil.do_request:50} totally used 0.08327913284301758 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:39 INFO {4245-123145457082368 webUtil.do_request:50} totally used 0.0776669979095459 to request http://www.safedog.cn, response 200
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:39 DEBUG {4245-123145457082368 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:40 INFO {4245-123145457082368 webUtil.do_request:50} totally used 0.09288692474365234 to request http://www.safedog.cn, response 200
+18-12-29 14:48:40 DEBUG {4245-123145457082368 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:40 DEBUG {4245-123145457082368 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:40 INFO {4245-123145457082368 webUtil.do_request:50} totally used 0.08575582504272461 to request http://www.safedog.cn, response 200
+18-12-29 14:48:40 DEBUG {4245-123145457082368 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:40 DEBUG {4245-123145457082368 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:40 INFO {4245-123145457082368 webUtil.do_request:50} totally used 0.08558011054992676 to request http://www.safedog.cn, response 200
+18-12-29 14:48:40 DEBUG {4245-123145457082368 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:40 DEBUG {4245-123145457082368 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:40 INFO {4245-123145457082368 webUtil.do_request:50} totally used 0.08534502983093262 to request http://www.safedog.cn, response 200
+18-12-29 14:48:40 DEBUG {4245-123145457082368 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:40 DEBUG {4245-123145457082368 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:40 INFO {4245-123145457082368 webUtil.do_request:50} totally used 0.08866500854492188 to request http://www.safedog.cn, response 200
+18-12-29 14:48:40 DEBUG {4245-123145473921024 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:40 DEBUG {4245-123145473921024 connectionpool._make_request:393} http://www.safedog.cn:80 "GET / HTTP/1.1" 200 None
+18-12-29 14:48:40 INFO {4245-123145473921024 webUtil.do_request:50} totally used 0.08238005638122559 to request http://www.safedog.cn, response 200
+18-12-29 14:48:40 DEBUG {4245-123145473921024 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:40 DEBUG {4245-123145473921024 connectionpool._make_request:393} http://www.safedog.cn:80 "GET /wp-cron.php HTTP/1.1" 404 631
+18-12-29 14:48:40 INFO {4245-123145473921024 webUtil.do_request:50} totally used 0.056159019470214844 to request http://www.safedog.cn/wp-cron.php, response 404
+18-12-29 14:48:40 DEBUG {4245-123145473921024 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:40 DEBUG {4245-123145473921024 connectionpool._make_request:393} http://www.safedog.cn:80 "GET /wp-login.php HTTP/1.1" 404 631
+18-12-29 14:48:40 INFO {4245-123145473921024 webUtil.do_request:50} totally used 0.055867910385131836 to request http://www.safedog.cn/wp-login.php, response 404
+18-12-29 14:48:40 DEBUG {4245-123145473921024 connectionpool._new_conn:205} Starting new HTTP connection (1): www.safedog.cn:80
+18-12-29 14:48:40 DEBUG {4245-123145473921024 connectionpool._make_request:393} http://www.safedog.cn:80 "GET /favicon.ico HTTP/1.1" 200 61633
+18-12-29 14:48:40 INFO {4245-123145473921024 webUtil.do_request:50} totally used 0.10871291160583496 to request http://www.safedog.cn/favicon.ico, response 200

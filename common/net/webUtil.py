@@ -1,18 +1,17 @@
 # -*- coding:utf-8 -*-
 
-from common.log.logUtil import LogUtil as logging
+from common.log.log_util import LogUtil as log
 
 import requests
 from common.net.url import WrappedUrl, WrappedResponse
 import time
-import requests_cache
 
 from common.net.constant import HttpConstant
 
 #########################################################
 # (C)  zii .All rights Reserved#
 #########################################################
-logger = logging.getLogger(__name__)
+logger = log.getLogger(__name__)
 
 
 class Request(object):
@@ -59,6 +58,5 @@ class Request(object):
 
 
 if __name__ == '__main__':
-    web = Request()
-    res = web.request(WrappedUrl("http://www.baidu.com"))
-    print(res)
+    r = requests.get('http://www.ghostz.com.cn')
+    print(r)

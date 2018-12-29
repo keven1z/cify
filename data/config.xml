@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
     <plugins>
-        <port>
-        <description>port according to plugins</description>
-        <id>10000</id>
-        </port>
-        <whois>
-        <description>whois according to plugins</description>
-        <id>10001</id>
-        </whois>
-    </plugins>
-    <spiders>
-        <port>
-            <description>port according to spider</description>
+        <plugin type="port">
+            <description>port according to plugins</description>
             <id>10000</id>
-        </port>
-    </spiders>
-
+        </plugin>
+         <plugin type="whois">
+            <description>pass</description>
+            <id>10001</id>
+        </plugin>
+         <plugin type="cms">
+            <description>pass</description>
+            <id>10004</id>
+        </plugin>
+    </plugins>
 </config>

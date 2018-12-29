@@ -3,8 +3,8 @@
 # (C)  zii .All rights Reserved#
 #########################################################
 import time
-from common.log.logUtil import LogUtil as logging
-logger = logging.getLogger(__name__)
+from common.log.log_util import LogUtil as log
+logger = log.getLogger(__name__)
 class Spider(object):
 
     def __init__(self):

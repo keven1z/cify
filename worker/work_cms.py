@@ -2,10 +2,9 @@ from common.worker import Worker
 from plugins.pluginmanager import PluginManager
 
 
-
-class PortWorker(Worker):
+class CmsWorker(Worker):
     def __init__(self, wharehouse):
-        super(PortWorker, self).__init__(wharehouse)
+        super(CmsWorker, self).__init__(wharehouse)
         self.wharehouse = wharehouse
 
     def _run(self):
@@ -17,8 +16,10 @@ class PortWorker(Worker):
             plghash = {}
             plglist = []
             plgManager = PluginManager()
-            port_plugin_id = self.wharehouse.config.port_plugin_id
-            if port_plugin_id is not None:
+            cms_plugin_id = self.wharehouse.config.cms_id
+            if cms_plugin_id is not None:
                 plglist, plghash = plgManager.get_modules()
-            plugins = plghash[port_plugin_id].module_obj
+            plugins = plghash[cms_plugin_id].module_obj
             plugins.run(self.wharehouse)
+
+

@@ -6,11 +6,11 @@ import re
 import random
 import copy
 import urllib.parse
-from common.log.logUtil import LogUtil as logging
-from common.utils.print import *
-from common.thread.thread_pool import ThreadPool
+from common.log.log_util import LogUtil as log
+from common.utils.printdata import *
+from common.threads.thread_pool import ThreadPool
 
-logging = logging.getLogger(__name__)
+logger = log.getLogger(__name__)
 
 
 class WafDetect(object):
@@ -163,8 +163,6 @@ class WafDetect(object):
         return self.match_header(('Set-Cookie', match))
 
     def check_waf(self, plugins_fuc, plugin_name):
-        logging.info('Check for ' + plugin_name)
-        info('Check for ' + plugin_name)
         if plugins_fuc.is_waf(self):
             logging.info('Found waf,name:' + plugin_name)
             info('Found waf,name:' + plugins_fuc.NAME)
@@ -174,7 +172,7 @@ class WafDetect(object):
     def run(self):
         plugins_dict = self.load_plugins()
         if plugins_dict is not None:
-            info('Checking WAF...')
+            info('Checking WAF')
             for plugin_name, plugins_fuc in plugins_dict.items():
                 self.threadPool.add_task(self.check_waf, plugins_fuc, plugin_name)
         self.threadPool.wait_all_complete()
