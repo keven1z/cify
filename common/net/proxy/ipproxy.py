@@ -1,31 +1,32 @@
 from xml.dom.minidom import parse
-from common.log.logUtil import LogUtil as logging
+from common.log.log_util import LogUtil
 import sys
 from common.net.webUtil import Request
 from common.net.url import WrappedUrl
 from common.net.proxy.rulermanager import RulerManager
 import random
 import os
-logger = logging.getLogger('debug')
+
+logger = LogUtil.getLogger('debug')
 
 
 class IPProxy(object):
     def __init__(self):
-        self.config_path = os.path.dirname(__file__)+'/config_ruler.xml'
+        self.config_path = os.path.dirname(__file__) + '/config_ruler.xml'
         self.rulerManager = RulerManager()
         self.ip_list = []
         self.web = Request()
 
     def generate(self):  # 生成ip代理ip池
         ruler_id, url = self.config_read()
-        wurl=WrappedUrl(url,allow_cache=True)
+        wurl = WrappedUrl(url, allow_cache=True)
         self.ip_list = self.get_ip_list(wurl, ruler_id)
         proxy_ip = self.get_random_ip()
         return proxy_ip
 
     def get_ip_list(self, wurl, ruler_id):
         resp = self.web.request(wurl)
-        web_text = resp.text
+        web_text = resp.content
         self.rulerManager.load()
         ruler_list, ruler_hash = self.rulerManager.get_modules()
         ruler_obj = ruler_hash[ruler_id].module_obj
@@ -36,7 +37,7 @@ class IPProxy(object):
     def get_random_ip(self):
         ip_list = self.ip_list
         proxy_ip = random.choice(ip_list)
-        logger.debug('get  proxy ip:'+proxy_ip)
+        logger.debug('get  proxy ip:' + proxy_ip)
         return proxy_ip
 
     def config_read(self):

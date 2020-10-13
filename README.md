@@ -1,6 +1,6 @@
 # CIFY -Web information scanning
 
-# 版本 1.0
+# 版本 1.1
 
 # 描述
 ## 该脚本主要为了渗透测试做收集信息准备工作，收集了渗透测试中大部分需要的信息。
@@ -11,11 +11,13 @@
 
 
 # 功能
-* 备案信息 
+* 备案信息 （基于whois）
 * cms 检测 (目前只添加了wordpress检测插件)
-* 端口扫描
+* 端口扫描（基于nmap）
 * CDN 检测 
 * waf 检测 
+* 子域名扫描（计划）
+* 目录爆破（计划）
 
 # 目录结构
 * common 通用函数
@@ -23,11 +25,11 @@
 * plugins 插件目录
 * worker 工作目录
 * data 系统所需文件目录
+* lib 离线第三方模块
 
 # 使用方法
 ## 参数
 * -u or --url :扫描的url
-* -p or --port :是否扫描端口，default:true
 
 ## 输出结果txt
 ### data/result下生成以host为名的txt文件
@@ -43,46 +45,58 @@ _  ___/__  / __  /_  __  / / /
                      /____/  
 Copyright [2018.9] [zii]
 
-[+]Starting CIFY 1.0  
+[+]Starting CIFY 1.1  
 [+]Detecting CDN
-[+]Not detect CDN,ip:*.*.*.*
 [+]Checking WAF
 [+]Found waf,name:Safedog(安全狗)
 [+]Checking cms
-[+]Not checking cms
 [+]Starting scaning port
-[+]Nmap scan report for www.********.cn (*.*.*.*)
-****************************************************************************
-*                               PORT RESULT                               *
-****************************************************************************
-  PORT     STATE         SERVICE
-   80/tcp  open          http (product: nginx)
-  443/tcp  open          http (product: nginx)
-****************************************************************************
-*                                   END                                    *
-****************************************************************************
-[+]Nmap done at Sat Dec 29 14:23:18 2018; 1 IP address (1 host up) scanned in 24.51 seconds
-[+]Starting whois www.********.cn
-****************************************************************************
-*                               RESULT WHOIS                               *
-****************************************************************************
-Domain Name: ********.cn
-ROID: ********-cn
-Domain Status: ok
-Registrant ID: hc6447669367131
-Registrant: ********
-Registrant Contact Email:********@********.cn
-Sponsoring Registrar: 阿里云计算有限公司（万网）
-Name Server: f1g1ns1.dnspod.net
-Name Server: f1g1ns2.dnspod.net
-Registration Time: 2010-09-06 12:38:38
-Expiration Time: 2026-09-06 12:38:38
-DNSSEC: unsigned
-
-****************************************************************************
-*                                   END                                    *
-****************************************************************************
-[+]Whois done
+[+]Start whois
++----------------------------------------+
+|                  port                  |
++-------+-------+--------------+---------+
+|  port | state | service_name | version |
++-------+-------+--------------+---------+
+|   21  |  open |     ftp      |   None  |
+|   30  |  open |  tcpwrapped  |   None  |
+|   80  |  open |     http     |   None  |
+|  311  |  open |  tcpwrapped  |   None  |
+|  443  |  open |     http     |   None  |
+|  705  |  open |  tcpwrapped  |   None  |
+|  912  |  open |  tcpwrapped  |   None  |
+|  1055 |  open |  tcpwrapped  |   None  |
+|  1296 |  open |  tcpwrapped  |   None  |
+|  2034 |  open |  tcpwrapped  |   None  |
+|  5200 |  open |  tcpwrapped  |   None  |
+|  5566 |  open |  tcpwrapped  |   None  |
+|  6106 |  open |  tcpwrapped  |   None  |
+| 14238 |  open |  tcpwrapped  |   None  |
+| 32784 |  open |  tcpwrapped  |   None  |
+| 55055 |  open |  tcpwrapped  |   None  |
++-------+-------+--------------+---------+
++----------------------------------------------+
+|                    whois                     |
++-----------------+----------------------------+
+|        项       |             值             |
++-----------------+----------------------------+
+|   domain_name   |         safedog.cn         |
+|    registrar    | 阿里云计算有限公司（万网） |
+|  creation_date  |    2010-09-06 12:38:38     |
+| expiration_date |    2026-09-06 12:38:38     |
+|   name_servers  |     f1g1ns1.dnspod.net     |
+|                 |     f1g1ns2.dnspod.ne      |
+|      status     |             ok             |
+|      emails     |    zhangzhx@safedog.cn     |
+|      dnssec     |          unsigned          |
+|       name      |  厦门服云信息科技有限公司  |
++-----------------+----------------------------+
++-----+-----------------+
+|  项 |        值       |
++-----+-----------------+
+| CDN | 183.252.199.196 |
+| waf | Safedog(安全狗) |
+| cms |       None      |
++-----+-----------------+
 
 ```
   

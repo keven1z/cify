@@ -9,12 +9,12 @@
 ###########################
 
 
-
 class Plugin(object):
 
     def __init__(self):
         self._id = -1
         self.wharehouse = None
+        self.result = None
 
     @property
     def id(self):
@@ -26,3 +26,6 @@ class Plugin(object):
 
     def _run(self):
         raise Exception('unimplemented method')
+
+    def result(self):
+        return self.result

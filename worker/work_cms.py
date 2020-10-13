@@ -21,5 +21,7 @@ class CmsWorker(Worker):
                 plglist, plghash = plgManager.get_modules()
             plugins = plghash[cms_plugin_id].module_obj
             plugins.run(self.wharehouse)
+            import data.data as data
+            data.RESULT.update({'cms': plugins.result})
 
 

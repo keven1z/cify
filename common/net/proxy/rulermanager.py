@@ -1,11 +1,11 @@
 from common.manager import *
-from common.log.logUtil import LogUtil as logging
+from common.log.log_util import LogUtil
 import sys
 import os
 import traceback
 import importlib.util
 
-logger = logging.getLogger('debug')
+logger = LogUtil.getLogger('debug')
 
 
 class RulerManager(Manager):

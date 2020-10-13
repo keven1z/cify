@@ -1,0 +1,2 @@
+class CDNQueryError(Exception):
+    pass

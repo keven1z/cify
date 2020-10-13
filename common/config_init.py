@@ -4,9 +4,9 @@
 
 
 from common.wharehouse import Wharehouse
-from common.log.log_util import LogUtil as log
 from common.moudle.cdn_detect import CDNDetect
 from common.utils.printdata import *
+from error.CDNQueryError import CDNQueryError
 from common.moudle.waf_detect import WafDetect
 from data.config import *
 import xml.etree.ElementTree as ET
@@ -56,20 +56,20 @@ def banner():
     _banner = _banner + 'Copyright [' + TIME + '] [' + AUTHOR + ']'
     print(_banner)
     print()
-    info('Starting CIFY 1.0  ')
+    info('Starting CIFY 1.1  ')
 
 
 def cdn_check(host):
     cdn = CDNDetect(host)
-    ip = cdn.run()
-    return ip
+    try:
+        ip = cdn.run()
+        return ip
+    except CDNQueryError as e:
+        error('CDN check failed,reason:' + e.__str__())
+        logger.error('CDN check failed,reason:' + e.__str__())
 
 
 def waf_check(wharehouse):
     waf = WafDetect(wharehouse)
     waf_name = waf.run()
     return waf_name
-
-
-def init_result(filename):
-    ResultExport.instance().pre_export(filename)

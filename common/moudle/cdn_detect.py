@@ -7,6 +7,8 @@ import sys
 from data.config import *
 from common.utils.printdata import *
 from common.log.log_util import LogUtil as log
+from error.CDNQueryError import CDNQueryError
+import data.data as data
 
 logger = log.getLogger(__name__)
 
@@ -20,11 +22,10 @@ class CDNDetect(object):
         self.cdn_list = []
         self.host = host
         self.probability = 0
-        self.result = ResultExport.instance()
 
     def _server_load(self):  # load cdn_server.txt
         try:
-            with open(os.path.abspath(os.path.dirname(__file__)) + '/../../'+CDN_SERVER_PATH, 'r') as f:
+            with open(os.path.abspath(os.path.dirname(__file__)) + '/../../' + CDN_SERVER_PATH, 'r') as f:
                 for server in f.readlines():
                     server = server.strip()
                     servers = server.split('#')
@@ -39,7 +40,6 @@ class CDNDetect(object):
 
     def run(self):  # detect CDN
         info('Detecting CDN')
-        self.result.add_data('CDN:')
         self._server_load()
         ip_list, server_list = self._get_ip_server_list()
         cdn_en = ''
@@ -56,22 +56,18 @@ class CDNDetect(object):
                     cdn_zh = p_cdn_zh
                     self.probability += 70
                     break
+        rate = str(self.probability) + '%'
         if self.probability > 80:
+
             warn(self.host + ' is using ' + cdn_zh + '(' + cdn_en + ')' + ' CDN')
             logger.warn(self.host + ' is using ' + cdn_zh + '(' + cdn_en + ')' + ' CDN')
-            self.result.add_data(cdn_zh)
-            sys.exit(0)
-
         elif self.probability > 60:
             warn(self.host + 'is very likely to use a CDN')
             logger.warn(self.host + 'is very likely to use a CDN')
-            self.result.add_data('very likely')
         else:
             ip = self.ip_list.pop(0)
-            info('Not detect CDN,ip:' + ip)
-            logger.info('Not detect CDN,ip:' + ip)
-            self.result.add_data('Not')
-            return ip
+            rate = ip
+        data.RESULT.update({'CDN': rate})
 
     def _get_ip_server_list(self):
 
@@ -84,18 +80,8 @@ class CDNDetect(object):
             rel = resolver.Resolver()
             rel.namesevers = dns_sever
             ans = rel.query(host, "A")
-        except ValueError as v:
-            error('CDN check failed,reason:' + str(v))
-            logger.error('CDN check failed,reason:' + str(v))
-            sys.exit(0)
-        except AttributeError as e:
-            error('CDN check failed,reason:' + str(e))
-            logger.error('CDN check failed,reason:' + str(e))
-            sys.exit(0)
-        except resolver.NXDOMAIN as m:
-            error('CDN check failed,reason:' + str(m))
-            logger.error('CDN check failed,reason:' + str(m))
-            sys.exit(0)
+        except (ValueError, AttributeError, resolver.NXDOMAIN) as e:
+            raise CDNQueryError(e)
 
         for i in ans.response.answer:
             for j in i.items:

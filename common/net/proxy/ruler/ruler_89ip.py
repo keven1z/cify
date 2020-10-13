@@ -9,6 +9,8 @@ class CifyRuler(Ruler):
         self.ip_list=[]
 
     def _execute(self, html_text):
+        html_text = html_text.decode('utf-8')
+
         pattern = '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]+'
         self.ip_list = re.findall(pattern, html_text)
 

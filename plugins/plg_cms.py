@@ -21,7 +21,6 @@ class CifyPlugin(Plugin):
         self.plugin_dict = {}
         self.load_plugins()
         self.http_client = Request()
-        self.result = ResultExport.instance()
 
     def load_plugins(self):
         try:
@@ -45,15 +44,12 @@ class CifyPlugin(Plugin):
 
     def _run(self):
         info('Checking cms')
-        self.result.add_data('CMS:')
+        cms = 'None'
         for method in self.plugin_dict.values():
             cms = method.check(self, self.wharehouse.wurl)
             if cms is not None:
-                info('Check type of cms:' + cms)
-                self.result.add_data(cms)
-                return
-        info('Not checking cms')
-        self.result.add_data('not')
+                break
+        self.result = cms
 
     def _request(self, wurl):
         w_resp = self.http_client.request(wurl)

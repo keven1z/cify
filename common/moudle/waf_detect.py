@@ -11,7 +11,7 @@ from common.utils.printdata import *
 from common.threads.thread_pool import ThreadPool
 
 logger = log.getLogger(__name__)
-
+import data.data as data
 
 class WafDetect(object):
     AdminFolder = '/Admin_Files/'
@@ -29,6 +29,7 @@ class WafDetect(object):
         self.path = '/'
         self.threadPool = ThreadPool()
         self.flag = False
+        self.name = None
 
     def request(self, method=None, path=''):
         wurl = self.wharehouse.wurl
@@ -167,6 +168,7 @@ class WafDetect(object):
             logging.info('Found waf,name:' + plugin_name)
             info('Found waf,name:' + plugins_fuc.NAME)
             self.flag = True
+            self.name = plugins_fuc.NAME
             self.threadPool.clear_tasks()
 
     def run(self):
@@ -178,13 +180,16 @@ class WafDetect(object):
         self.threadPool.wait_all_complete()
         if not self.flag:
             logging.info('The ' + self.wharehouse.wurl.url + ' is probably not WAF')
-            info('The ' + self.wharehouse.wurl.url + ' is probably not WAF')
-            return None
+
+            data.RESULT.update({'waf': '无'})
+        else:
+            data.RESULT.update({'waf': self.name})
 
 
 if __name__ == '__main__':
     from common.wharehouse import Wharehouse
     from common.net.url import WrappedUrl
+    import time
 
     s = time.time()
     w = WrappedUrl('http://www.safedog.cn/')
@@ -192,3 +197,4 @@ if __name__ == '__main__':
     whare.wurl = w
     WafDetect(whare).run()
     warn('使用了' + str(time.time() - s))
+    print(data.RESULT)

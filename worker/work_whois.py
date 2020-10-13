@@ -14,11 +14,12 @@ class WhoisWorker(Worker):
         platform = self.wharehouse.platform
         if platform == 'linux' or platform == 'darwin':
             plghash = {}
-            plglist = []
             plgManager = PluginManager()
             whois_plugin_id = self.wharehouse.config.whois_plugin_id
             if whois_plugin_id is not None:
                 plglist, plghash = plgManager.get_modules()
             plugins = plghash[whois_plugin_id].module_obj
             plugins.run(self.wharehouse)
+            import data.data as data
+            data.RESULT.update({'whois': plugins.result})
 

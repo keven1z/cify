@@ -35,5 +35,3 @@ class MoudleManager(object):
         whois_worker = WorkerFactory.create_worker(WhoisWorker, wharehouse)
         whois_worker.start()
         whois_worker.join()
-
-
